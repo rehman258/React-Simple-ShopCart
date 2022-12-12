@@ -25,7 +25,6 @@ const Footer = () => {
             ...defaultTheme.palette.defaultColors
         }
     })
-    console.log(footerTheme)
     return (
         <ThemeProvider theme={footerTheme}>
 
@@ -34,7 +33,7 @@ const Footer = () => {
                 sx={{
                     marginTop:'150px',
                     backgroundColor:'#ffffff1f',
-                    boxShadow:`0px 0px 42px -9px ${footerTheme.palette.logoColor}`,
+                    boxShadow:`0px 0px 42px 9px ${footerTheme.palette.logoColor}`,
                 }}
             >
                 <Grid container>

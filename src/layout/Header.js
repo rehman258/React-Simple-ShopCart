@@ -106,6 +106,8 @@ const Header = () => {
             sx={{
                 backgroundColor:'#ffffff1f',
                 boxShadow:`0px 4px 42px 9px ${headerTheme.palette.logoColor}`,
+                position:'relative',
+                zIndex:'9999',
             }}
             >
             <Grid container 

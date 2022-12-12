@@ -29,17 +29,11 @@ export default function FullLayout({children}) {
   return (
     <BrowserRouter>
       <ThemeProvider theme={layoutTheme}>
-          <Box>
             <Header/>
-          </Box>
-          <Box>
               {
                 children
               }
-          </Box>
-          <Box>
             <Footer/>
-          </Box>
       </ThemeProvider>
         </BrowserRouter>
   )
