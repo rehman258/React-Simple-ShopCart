@@ -1,0 +1,51 @@
+.cardOvarley{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #000000cc;
+    transition: all .2s ease;
+    z-index: 999;
+    left: 0;
+    top:100%;
+}
+.cardOvarley > div{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.previewCard:hover  .cardOvarley{
+    top: 0%;
+}
+.cardOvarley svg{
+    font-size: 35px;
+    cursor: pointer;
+}
+.cardOvarley .favorite svg{
+    fill: #faf0e6;
+}
+.cardOvarley .inCart svg{
+    fill: #faf0e6;
+}
+.cardOvarley .overView{
+    /* width: 100%; */
+    display: flex;
+}
+.cardOvarley .overView svg{
+    fill: #faf0e6;
+    font-size: 40px;
+}
+.cardOvarley svg:hover{
+    fill: #30abb0;
+}
+.cardOvarley .active svg{
+    fill: #30abb0;
+}
+
+
+
+/*Footer*/
+

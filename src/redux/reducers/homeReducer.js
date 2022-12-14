@@ -27,7 +27,17 @@ const homeState = {
 }
 
 const homeReducer = (state=homeState,{type,payload})=>{
-    return state
+
+    switch(type){
+        case Types.LOAD_PRODUCTS:
+            return{
+                ...state,
+                productList:payload,
+            }
+
+
+        default:return state
+    }
 }
 
 export default homeReducer;

@@ -70,3 +70,27 @@ body{
     font-size: 15px;
     margin: 0px 0px;
 }
+
+
+/* Preview slider */
+.preview-slider .slick-slider{
+    background-color: transparent !important;
+}
+.preview-slider .slick-prev , .preview-slider .slick-next{
+    fill:#30abb0 !important;
+    z-index: 999999 !important;
+    border: 2px solid #30abb0;
+    border-radius: 15px;
+    background-color: #30acb046;
+    padding: 15px;
+}
+
+.preview-slider .slick-prev{
+    left: 15px !important;
+}
+.preview-slider .slick-next{
+    right: 15px !important;
+}
+.preview-sliderItem{
+    background-color:transparent;
+}

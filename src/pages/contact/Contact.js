@@ -1,10 +1,28 @@
 import React from 'react';
+import {
+    Box,
+}from '@mui/material';
+
+import {createTheme,ThemeProvider} from '@mui/material/styles';
+
 
 const Contact = () => {
+
+    const contactTheme = createTheme({
+        components:{
+
+        },
+        palette:{
+            
+        }
+    })
+
     return (
-        <div>
-            contact
-        </div>
+        <ThemeProvider thene={contactTheme}>
+            <section>
+                contact
+            </section>
+        </ThemeProvider>
     );
 }
 

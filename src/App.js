@@ -4,6 +4,7 @@ import axios from 'axios';
 import {Link,Routes,Route,BrowserRouter} from 'react-router-dom';
 
 import './App.css'
+import './assets/style/components.css'
 
 import Home from './pages/home/Home'
 import About from './pages/about/About'

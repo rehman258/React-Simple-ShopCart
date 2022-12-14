@@ -40,7 +40,7 @@ const Header = () => {
                                     '&:hover':{
                                         transform:'translate(0px,1px)'
                                     },
-                                    transform:'translate(-5px,5px)',
+                                    transform:'translate(-5px,6px)',
                                     display:'block',
                                     backgroundColor:'#3A3C3D',
                                     // backgroundColor:'red',
@@ -48,7 +48,7 @@ const Header = () => {
                                     borderRadius:'5px',
                                     textDecoration:'none',
                                     color:defaultTheme.palette.defaultColors.logoColor,
-                                    border:'.5px solid #fff',
+                                    border:'.5px solid #80878cd9',
                                     padding:'10px 25px',
 
 
