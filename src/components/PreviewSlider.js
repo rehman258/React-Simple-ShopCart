@@ -51,6 +51,7 @@ const PreviewSlider = ({sliderList=[]}) => {
         nextArrow: <BannerNextArrow/>,
         prevArrow: <BannerPrevArrow/>
       };
+    //   console.log(sliderList)
     return (
             <Slider {...settings} style={{backgroundColor:'#fff'}}>
                 {

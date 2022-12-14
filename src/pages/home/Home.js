@@ -14,15 +14,18 @@ import {connect} from 'react-redux';
 import BannerSlider from '../../components/BannerSlider';
 import '../../assets/style/home.css';
 import Logo from '../../assets/img/shop-logo.png'
-import ProductItem from '../../components/ProductItem';
+
+
 import PreviewSlider from '../../components/PreviewSlider';
+import CategoryFilter from '../../components/CategoryFilter';
+
 
 import {loadProducts} from '../../services/services';
-import {loadProductsAction} from '../../redux/actions/HomeAction';
+import {loadProductsAction} from '../../redux/actions/ProductAction';
 
 
-const Home = ({homeReducer,loadProductsAction}) => {
-
+const Home = ({homeReducer,productReducer,loadProductsAction,...otherProps}) => {
+    // console.log(productReducer)
 
     const homeTheme = createTheme({
         components:{
@@ -33,20 +36,20 @@ const Home = ({homeReducer,loadProductsAction}) => {
                             color:'white',
                             padding:'50px 100px'
                         },
-                        '&.section-header':{
-                            width:'100%',
-                            fontSize:'56px',
-                            textAlign:'center',
-                            margin:'50px 0px',
-                            marginTop:'105px',
-                            color:'#fff',
-                            "& span":{
-                                borderRadius: '22px',
-                                borderTop: '8px solid #80878cd9',
-                                borderBottom: '8px solid #80878cd9',
-                                padding: '15px 45px',
-                            }
-                        }
+                        // '&.section-header':{
+                        //     width:'100%',
+                        //     fontSize:'56px',
+                        //     textAlign:'center',
+                        //     margin:'50px 0px',
+                        //     marginTop:'105px',
+                        //     color:'#fff',
+                        //     "& span":{
+                        //         borderRadius: '22px',
+                        //         borderTop: '8px solid #80878cd9',
+                        //         borderBottom: '8px solid #80878cd9',
+                        //         padding: '15px 45px',
+                        //     }
+                        // }
                     }
                 }
             },
@@ -84,7 +87,6 @@ const Home = ({homeReducer,loadProductsAction}) => {
     useEffect(()=>{
         (async()=>{
             loadProductsAction(await loadProducts())
-            console.log(await loadProducts())
         })()
     },[])
 
@@ -143,43 +145,9 @@ const Home = ({homeReducer,loadProductsAction}) => {
                     Products
                     </span>
                 </Typography>
-                <Box
-                    className="product-list"
-                    sx={{
-                        padding:'50px 0px'
-                    }}
-                >
-                    <Grid container
-                        
-                    >
-                        {
-                            homeReducer.productList.map((prod,i)=>(
-
-                                <Grid item xs={3} key={i}>
-                                    <ProductItem
-                                        imgUrl={prod.image}
-                                        title={prod.title}
-                                        desc={prod.description}
-                                    />
-                                </Grid>
-                            ))
-                        }
-                      
-                        {/* {homeReducer.productList.map((prod,i)=>(
-
-                            <Grid item xs={3} key={i}>
-                                <PreviewSliderItem 
-                                    imgUrl={prod.image}
-                                />
-                            </Grid>
-                        ))} */}
-                            
-                     
-                       
-                     
-                    </Grid>
-                    
-                </Box>
+                <CategoryFilter
+                    gallery={homeReducer.products}
+                />
                 <div className="line-effect"></div>
                 <Typography className="section-header">
                     <span>
@@ -189,7 +157,7 @@ const Home = ({homeReducer,loadProductsAction}) => {
                 <Box
                     className="preview-slider"
                 >
-                    <PreviewSlider sliderList={homeReducer.productList}/>
+                    <PreviewSlider sliderList={productReducer.products}/>
                 </Box>
             </ThemeProvider>
         </section>

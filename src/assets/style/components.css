@@ -44,7 +44,42 @@
 .cardOvarley .active svg{
     fill: #30abb0;
 }
+/*CategoryFilter */
+.categoryTabList {
+    max-width: 600px;
+    margin:0px auto;
+    margin-bottom:35px;
+    text-align: center;
+}
+.categoryTabList li{
+    display:inline-block;
+    margin:0px 2.5px;
+    border:.5px solid grey;
+    padding:7.5px 10px;
+    border-radius: 8px;
+    transition: all .2s ease;
+    cursor: pointer;
+    color: #30abb0;
+    /* background-color: red; */
+}
+.categoryTabList li.active{
+    background-color: #30abb033;
+}
+.categoryTabList li:hover{
+    background-color: #30abb033;
+}
 
+
+/*ProductItem*/
+.productItem{
+    /* background-color: red; */
+}
+.productItem .MuiIconButton-root{
+    background-color: red;
+}
+.productItem .MuiIconButton-root svg{
+    fill:navajowhite;
+}
 
 
 /*Footer*/

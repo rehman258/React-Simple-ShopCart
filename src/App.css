@@ -15,3 +15,29 @@ ul li{
     height: .000000000000000000000001px;
     box-shadow:  0px 0px 42px 9px #30abb0;
 }
+.section-header{
+    width:100%;
+    font-size:56px !important;
+    text-align:center;
+    margin:105px 0px 20px 0px !important;
+    margin-top:105px;
+    color:#fff;
+}
+.section-header span{
+    border-radius: 22px;
+    border-top: 8px solid #80878cd9;
+    border-bottom: 8px solid #80878cd9;
+    padding: 15px 45px;
+}
+
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}

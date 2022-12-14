@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
@@ -52,17 +53,22 @@ const PreviewSliderItem = ({sliderItem}) =>{
          <div className='cardOvarley'>
             <div>
               <div className="favorite active" title="Add with list">
-                <FavoriteIcon />
+                <IconButton>
+                  <FavoriteIcon />
+                </IconButton>
               </div>
               <div className='inCart ' title="Add cart">
-                <ShoppingBasketIcon/>
+                <IconButton>
+                  <ShoppingBasketIcon/>
+                </IconButton>
               </div>
             </div>
             <div className='overView ' title="View details">
-              <VisibilityIcon/>
+              <IconButton>
+                <VisibilityIcon/>
+              </IconButton>
             </div>
          </div> 
-          
         </Card>
       </Paper>
     </ThemeProvider>

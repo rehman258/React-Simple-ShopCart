@@ -23,7 +23,10 @@ const homeState = {
             description:'You Can order it now.'
         }
     ],
-    productList:[]
+    products:{
+        list:[],
+        categories:[]
+    }
 }
 
 const homeReducer = (state=homeState,{type,payload})=>{
@@ -32,7 +35,7 @@ const homeReducer = (state=homeState,{type,payload})=>{
         case Types.LOAD_PRODUCTS:
             return{
                 ...state,
-                productList:payload,
+                products:payload,
             }
 
 
