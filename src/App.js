@@ -9,6 +9,7 @@ import './assets/style/components.css'
 import Home from './pages/home/Home'
 import About from './pages/about/About'
 import Products from './pages/products/Products'
+import CartList from './pages/cartList/CartList'
 import Contact from './pages/contact/Contact'
 
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Home/>} />
           <Route path="/about" element={<About/>} />
           <Route path="/products" element={<Products/>} />
+          <Route path="/cartlist" element={<CartList/>} />
           <Route path="/contact" element={<Contact/>} />
         </Routes>
     </FullLayout>

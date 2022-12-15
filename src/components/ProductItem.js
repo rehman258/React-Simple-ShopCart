@@ -72,8 +72,8 @@ export default function RecipeReviewCard({productItem}) {
                 </Typography>
               </CardContent>
               
-              <CardActions disableSpacing sx={{textAlign:"right"}}>
-                <IconButton aria-label="add to favorites" >
+              <CardActions  sx={{textAlign:"right"}}>
+                <IconButton className='active' aria-label="add to favorites">
                   <FavoriteIcon />
                 </IconButton>
                 <IconButton>

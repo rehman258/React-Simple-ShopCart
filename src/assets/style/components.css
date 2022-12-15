@@ -70,16 +70,39 @@
 }
 
 
+
 /*ProductItem*/
 .productItem{
     /* background-color: red; */
 }
+
+
 .productItem .MuiIconButton-root{
-    background-color: red;
+    transition: all .2s ease;
+    border:1px solid navajowhite;
 }
 .productItem .MuiIconButton-root svg{
+    transition: all .2s ease;
     fill:navajowhite;
 }
+
+
+.productItem .MuiIconButton-root:hover{
+    border:1px solid #30abb0;
+}
+.productItem .MuiIconButton-root:hover svg{
+    fill:#30abb0;
+}
+
+
+.productItem .MuiIconButton-root.active{
+    border-color:#30abb0;
+}
+.productItem .MuiIconButton-root.active svg{
+    fill:#30abb0;
+}
+
+
 
 
 /*Footer*/
