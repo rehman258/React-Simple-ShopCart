@@ -87,6 +87,7 @@ const Home = ({homeReducer,productReducer,loadProductsAction,...otherProps}) => 
     useEffect(()=>{
         (async()=>{
             loadProductsAction(await loadProducts())
+            console.log(await loadProducts())
         })()
     },[])
 

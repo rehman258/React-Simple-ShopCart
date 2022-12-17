@@ -1,0 +1,128 @@
+.cartList{
+    color: #fff;
+}
+.cartList .MuiListItem-root{
+    margin-bottom: 10px;
+    background-color: #30abb030;
+    border: 0.5px solid #fff;
+    padding: 10px 15px;
+    /* border-color: ; */
+}
+.cartItem-img img{
+    width: 50px;
+    height:50px;
+    border-radius: 8px;
+    border:.5px solid #30abb0;
+}
+.cartList{
+    margin-top: 50px;
+}
+.cartList ul{
+    max-height: 500px;
+    overflow-y: scroll;
+    padding-right: 5px;
+    margin-right: 30px;
+}
+.cartList ul::-webkit-scrollbar-thumb{
+    background-color: #317678;
+    border-radius: 8px;
+}
+.cartList ul::-webkit-scrollbar-button{
+    border-radius: 8px;
+
+}
+.cartList ul::-webkit-scrollbar-track{
+    /* background-color: grey; */
+    border-radius: 8px;
+
+}
+.cartList ul::-webkit-scrollbar{
+    width: 9px;
+    /* background-color: red; */
+    padding: 0;
+    border-radius: 8px;
+}
+
+.itemCountActions button{
+    color: #30abb0;
+}
+
+.itemCountActions button.itemDeleteIcon{
+    color: #ff0000;
+}
+
+.cartItem-details{
+
+}
+.cartItem-details .cartItem-heading{
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.cartItem-details .cartItem-description{
+    color: #abaaaa;
+}
+.cartItem-details .cartItem-price{
+    font-style: italic;
+}
+
+
+
+/* cartListPayment */
+
+.cartListPayment{
+    color: #fff;
+}
+.cartListPaymentTable thead tr th{
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    font-size: 17px;
+    font-style: italic;
+    padding-left: 0;
+    text-align: center;
+    width: 33%;
+}
+.cartListPayment tbody tr td{
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    font-size: 13px;
+    text-align: center;
+    width: 33%;
+    /* text-align: c; */
+    /* font-style: italic; */
+}
+
+.cartListPayment .cartItem-img img{
+    width: 50px;
+    height:50px;
+    border-radius: 8px;
+    border:.5px solid #30abb0;
+}
+.cartListPayment{
+    /* margin-top: 50px; */
+}
+.cartListPayment {
+    max-height: 390px;
+    overflow-y: scroll;
+    padding-right: 10px;
+}
+.cartListPayment::-webkit-scrollbar-thumb{
+    background-color: #317678;
+    border-radius: 8px;
+}
+.cartListPayment::-webkit-scrollbar-button{
+    border-radius: 8px;
+
+}
+.cartListPayment::-webkit-scrollbar-track{
+    /* background-color: grey; */
+    border-radius: 8px;
+
+}
+.cartListPayment::-webkit-scrollbar{
+    width: 9px;
+    /* background-color: red; */
+    padding: 0;
+    border-radius: 8px;
+}

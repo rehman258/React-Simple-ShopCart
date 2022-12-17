@@ -171,9 +171,9 @@ const Header = () => {
                 <Grid item xs={1}>
                     <ul className='header-socials'>
                         <li>
-                            <a  >
+                            <Link to='/cartlist'>
                                 <ShoppingBasketIcon/>
-                            </a>
+                            </Link>
 
                         </li>
                         
