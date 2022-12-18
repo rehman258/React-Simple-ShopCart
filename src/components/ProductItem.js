@@ -17,7 +17,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import {createTheme,ThemeProvider} from '@mui/material/styles'
 
 
-export default function RecipeReviewCard({productItem}) {
+export default function RecipeReviewCard({productItem,addCartHandler}) {
 
   const productItemTheme=createTheme({
     componentns:{
@@ -73,8 +73,12 @@ export default function RecipeReviewCard({productItem}) {
               </CardContent>
               
               <CardActions  sx={{textAlign:"right"}}>
-                <IconButton className='active' aria-label="add to favorites">
-                  <FavoriteIcon />
+                <IconButton 
+                  className='active' 
+                  aria-label="add to favorites"
+                  onClick={(e)=>addCartHandler(e,productItem)}
+                >
+                    <FavoriteIcon />
                 </IconButton>
                 <IconButton>
                   <VisibilityIcon/>

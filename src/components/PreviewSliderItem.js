@@ -18,7 +18,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import {createTheme,ThemeProvider} from '@mui/material/styles'
 
 
-const PreviewSliderItem = ({sliderItem}) =>{
+const PreviewSliderItem = ({sliderItem,addCartHandler}) =>{
 
   const productItemTheme=createTheme({
     componentns:{
@@ -58,8 +58,10 @@ const PreviewSliderItem = ({sliderItem}) =>{
                 </IconButton>
               </div>
               <div className='inCart ' title="Add cart">
-                <IconButton>
-                  <ShoppingBasketIcon/>
+                <IconButton
+                  onClick={(e)=>addCartHandler(e,sliderItem)}
+                >
+                  <ShoppingBasketIcon />
                 </IconButton>
               </div>
             </div>

@@ -38,7 +38,7 @@ const BannerPrevArrow = (props)=>{
 
 
 
-const PreviewSlider = ({sliderList=[]}) => {
+const PreviewSlider = ({sliderList=[],addCartHandler}) => {
     const settings = {
         dots: false,
         infinite: true,
@@ -57,7 +57,7 @@ const PreviewSlider = ({sliderList=[]}) => {
                 {
                     sliderList.map((sliderItem,i)=>(
                         <div key={i} className="preview-sliderItem">
-                            <PreviewSliderItem sliderItem={sliderItem}/>
+                            <PreviewSliderItem addCartHandler={addCartHandler} sliderItem={sliderItem}/>
                         </div>
                     ))
                 }

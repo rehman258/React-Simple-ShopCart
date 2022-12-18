@@ -9,7 +9,7 @@ import ProductItem from './ProductItem';
 import {createTheme,ThemeProvider} from '@mui/material/styles';
 
 
-const CategoryFilter = ({gallery}) => {
+const CategoryFilter = ({gallery,addCartHandler}) => {
     const [galleryItems,setGalleryItem]= useState(null);
     const [categoryType,setCategoryType]=useState('all')
     
@@ -29,7 +29,6 @@ const CategoryFilter = ({gallery}) => {
 
     useEffect(()=>{
         setGalleryItem(gallery)
-        
     },[])
 
 
@@ -94,6 +93,8 @@ const CategoryFilter = ({gallery}) => {
                             >
                                 <ProductItem
                                     productItem={prod}
+                                    addCartHandler={addCartHandler}
+
                                 />
                             </Grid>
                         ))

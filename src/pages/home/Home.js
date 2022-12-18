@@ -23,8 +23,9 @@ import CategoryFilter from '../../components/CategoryFilter';
 import {loadProducts} from '../../services/services';
 import {loadProductsAction} from '../../redux/actions/ProductAction';
 
+import {addToCartAction} from '../../redux/actions/CartActions';
 
-const Home = ({homeReducer,productReducer,loadProductsAction,...otherProps}) => {
+const Home = ({homeReducer,productReducer,loadProductsAction}) => {
     // console.log(productReducer)
 
     const homeTheme = createTheme({
@@ -87,11 +88,12 @@ const Home = ({homeReducer,productReducer,loadProductsAction,...otherProps}) => 
     useEffect(()=>{
         (async()=>{
             loadProductsAction(await loadProducts())
-            console.log(await loadProducts())
         })()
     },[])
 
-    
+    const addCartHandler =(item)=>{
+        console.log('add handler')
+    }
 
     return (
         <section>
@@ -147,6 +149,7 @@ const Home = ({homeReducer,productReducer,loadProductsAction,...otherProps}) => 
                     </span>
                 </Typography>
                 <CategoryFilter
+                    addCartHandler={addCartHandler}
                     gallery={homeReducer.products}
                 />
                 <div className="line-effect"></div>
@@ -158,7 +161,7 @@ const Home = ({homeReducer,productReducer,loadProductsAction,...otherProps}) => 
                 <Box
                     className="preview-slider"
                 >
-                    <PreviewSlider sliderList={productReducer.products}/>
+                    <PreviewSlider addCartHandler={addCartHandler} sliderList={productReducer.products}/>
                 </Box>
             </ThemeProvider>
         </section>

@@ -7,11 +7,19 @@ export const loadProducts = async()=>{
     const filterTabs = new Set(); 
     await data.forEach(element => {
            filterTabs.add(element.category)
-    });
+    }); 
 
-    const constModifiedData = {
-        list:data,
+    
+    const modifiedData = {
+        list:[],
         categories:[...filterTabs]
     }
-    return constModifiedData;
+    data.forEach(dataItem=>{
+        modifiedData.list.push({
+            ...dataItem,
+            isInCart:false,
+        })
+    })
+    console.log(modifiedData)
+    return modifiedData;
 }
