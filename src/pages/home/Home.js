@@ -1,5 +1,8 @@
 import React,{useEffect,useState} from 'react';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import defaultTheme from '../../Theme/Theme';
 import {createTheme,ThemeProvider} from '@mui/material/styles';
 import {
@@ -25,8 +28,11 @@ import {loadProductsAction} from '../../redux/actions/ProductAction';
 
 import {addToCartAction} from '../../redux/actions/CartActions';
 
-const Home = ({homeReducer,productReducer,loadProductsAction}) => {
+
+const Home = ({homeReducer,productReducer,cartReducer,loadProductsAction,addToCartAction}) => {
     // console.log(productReducer)
+
+    
 
     const homeTheme = createTheme({
         components:{
@@ -91,13 +97,38 @@ const Home = ({homeReducer,productReducer,loadProductsAction}) => {
         })()
     },[])
 
-    const addCartHandler =(item)=>{
-        console.log('add handler')
+    
+    const addCartHandler =(e,item)=>{
+        if(cartReducer.cartList.find(cartItem=>cartItem===item)){
+            toast.info("Product's already added to cart",{
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            })
+        }else{
+            toast.success(' Product added to cart',{
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            })
+            addToCartAction(item)
+        }
     }
 
     return (
         <section>
             <ThemeProvider theme={homeTheme}>
+                <ToastContainer/>
 
                 <Box className="banner-slider">
                     <BannerSlider
@@ -171,7 +202,8 @@ const mapStateToProps=state=>{
     return state
 }
 const mapDispatchToProps={
-    loadProductsAction
+    loadProductsAction,
+    addToCartAction
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Home);

@@ -79,13 +79,12 @@
 
 .productItem .MuiIconButton-root{
     transition: all .2s ease;
-    border:1px solid navajowhite;
+    border:1px solid #fff;
 }
 .productItem .MuiIconButton-root svg{
     transition: all .2s ease;
-    fill:navajowhite;
+    fill:#fff;
 }
-
 
 .productItem .MuiIconButton-root:hover{
     border:1px solid #30abb0;

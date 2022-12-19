@@ -13,7 +13,7 @@ import Paper from '@mui/material/Paper';
 
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import {createTheme,ThemeProvider} from '@mui/material/styles'
 
 
@@ -74,9 +74,16 @@ export default function RecipeReviewCard({productItem,addCartHandler}) {
               
               <CardActions  sx={{textAlign:"right"}}>
                 <IconButton 
-                  className='active' 
+                  className='' 
                   aria-label="add to favorites"
                   onClick={(e)=>addCartHandler(e,productItem)}
+                >
+                    <ShoppingBasketIcon />
+                </IconButton>
+              
+                <IconButton 
+                  className='active' 
+                  aria-label="add to favorites"
                 >
                     <FavoriteIcon />
                 </IconButton>
