@@ -14,12 +14,14 @@ export const loadProducts = async()=>{
         list:[],
         categories:[...filterTabs]
     }
+    
     data.forEach(dataItem=>{
         modifiedData.list.push({
             ...dataItem,
             isInCart:false,
         })
     })
-    console.log(modifiedData)
+
+    console.log('service worked')
     return modifiedData;
 }

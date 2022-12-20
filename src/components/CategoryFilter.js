@@ -8,8 +8,9 @@ import ProductItem from './ProductItem';
 
 import {createTheme,ThemeProvider} from '@mui/material/styles';
 
+import {connect} from 'react-redux'
 
-const CategoryFilter = ({gallery,addCartHandler}) => {
+const CategoryFilter = ({gallery,addCartHandler,productReducer}) => {
     const [galleryItems,setGalleryItem]= useState(null);
     const [categoryType,setCategoryType]=useState('all')
     
@@ -26,11 +27,10 @@ const CategoryFilter = ({gallery,addCartHandler}) => {
         }
     })
 
-
+    // console.log(productReducer)
     useEffect(()=>{
         setGalleryItem(gallery)
     },[])
-
 
     const CategoryTabItem =({tabText,tabIndex,...otherProps})=>{
         return (
@@ -46,10 +46,11 @@ const CategoryFilter = ({gallery,addCartHandler}) => {
     }
 
     const showGalleryItemsHandler=(e,categoryTypeParam)=>{
-        // e.target.classList.add('active')
-        // console.log(categoryTypeParam)
         setCategoryType(categoryTypeParam)
     }
+
+
+    
 
     return (
         <ThemeProvider theme={categoryTheme}>
@@ -65,21 +66,23 @@ const CategoryFilter = ({gallery,addCartHandler}) => {
                         All
                     </li>
                     {
-                        gallery.categories.map((tabItem,i)=>(
-                            <CategoryTabItem 
-                                key={i} 
-                                tabIndex={i}
-                                tabText={tabItem}
-                                onClick={(e)=>showGalleryItemsHandler(e,tabItem)}
-                            />
-                        ))
+                        productReducer.categories !== null ?
+                            productReducer.categories.map((tabItem,i)=>(
+                                <CategoryTabItem 
+                                    key={i} 
+                                    tabIndex={i}
+                                    tabText={tabItem}
+                                    onClick={(e)=>showGalleryItemsHandler(e,tabItem)}
+                                />
+                            ))
+                        :''
                     }
                 </ul>
                 <Grid container
                 >
                     {
-                        gallery !== null ?
-                        gallery.list.map((prod,i)=>(
+                        productReducer.products !== null ?
+                        productReducer.products.map((prod,i)=>(
                             <Grid 
                                 key={i}
                                 xs={3}
@@ -107,4 +110,12 @@ const CategoryFilter = ({gallery,addCartHandler}) => {
     );
 }
 
-export default CategoryFilter;
+const mapStateToProps=state=>{
+    return state
+}
+
+const mapDispatchToProps={
+
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(CategoryFilter);

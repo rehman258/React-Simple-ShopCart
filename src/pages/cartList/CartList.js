@@ -27,899 +27,91 @@ import {
 
 import {createTheme,ThemeProvider} from '@mui/material/styles';
 
-// import {} from '../../redux/actions/'
 import '../../assets/style/cartStyle.css'
 
+import {removeFromCartAction} from '../../redux/actions/CartActions';
+import Storage from '../../Storage/Storage';
 
-import {connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 
-const CartList = ({cartReducer}) => {
+const CartList = ({cartReducer,removeFromCartAction}) => {
+
+    const cartItemRemoveHandler=(id)=>{
+        removeFromCartAction(id)
+        Storage._removeFromStore(id)
+    }
+
+
     return (
         <section className='cartList'>
             <form action="" style={{display:'flex'}}>
                 <List sx={{ width: '100%', maxWidth: '59%',display:'inline-block'}}>
                 {
-                    cartReducer.cartItemList.map((cartItem,i) => (
-                        <React.Fragment>
-
-                        <ListItem
-                            key={i}
-                            disableGutters
-                            sx={{
-                                display:'flex',
-                                justifyContent:'space-between',
-                                borderRadius:'8px'
-                            }}
-                    
-                        >
-                            <Box
-                                sx={{
-                                    display:'flex'
-                                }}
-                            >
-                                <Box
-                                    className='cartItem-img'
+                    cartReducer.cartList !== null ?
+                        cartReducer.cartList.map((cartItem,i) => (
+                            <React.Fragment key={i}>
+                                <ListItem
+                                    
+                                    disableGutters
                                     sx={{
-                                        marginRight:'15px'
+                                        display:'flex',
+                                        justifyContent:'space-between',
+                                        borderRadius:'8px'
                                     }}
+                            
                                 >
-                                    <img src={cartItem.image} alt="" />
-                                </Box>
+                                    <Box
+                                        sx={{
+                                            display:'flex'
+                                        }}
+                                    >
+                                        <Box
+                                            className='cartItem-img'
+                                            sx={{
+                                                marginRight:'15px'
+                                            }}
+                                        >
+                                            <img src={cartItem.image} alt="" />
+                                        </Box>
 
-                                <Box>
-                                    {
-                                        cartItem.title
-                                    }
+                                        <Box
+                                            sx={{
+                                                maxWidth:'450px',
+                                                textOverflow: 'ellipsis',
+                                                whiteSpace: 'nowrap',
+                                                overflow: 'hidden',
+                                            }}
+                                        >
+                                            {
+                                                cartItem.title
+                                            }
+                                        </Box>
                                 </Box>
-                           </Box>
-                        
-                            <Box className='itemCountActions'>
-                                <IconButton aria-label="reduce">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="caption">
-                                    999
-                                </Typography>
-                                <IconButton aria-label="increase">
-                                    <AddIcon color="#ff0000"/>
-                                </IconButton>
-                                <IconButton className='itemDeleteIcon' aria-label="delete">
-                                        <DeleteIcon />
-                                </IconButton>
-                            </Box>
-                        </ListItem>
-                        <ListItem
-                            key={i}
-                            disableGutters
-                            sx={{
-                                display:'flex',
-                                justifyContent:'space-between',
-                                borderRadius:'8px'
-                            }}
-                    
-                        >
-                            <Box
-                                sx={{
-                                    display:'flex'
-                                }}
-                            >
-                                <Box
-                                    className='cartItem-img'
-                                    sx={{
-                                        marginRight:'15px'
-                                    }}
-                                >
-                                    <img src={cartItem.image} alt="" />
-                                </Box>
-
-                                <Box>
-                                    {
-                                        cartItem.title
-                                    }
-                                </Box>
-                           </Box>
-                        
-                            <Box className='itemCountActions'>
-                                <IconButton aria-label="reduce">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="caption">
-                                    999
-                                </Typography>
-                                <IconButton aria-label="increase">
-                                    <AddIcon color="#ff0000"/>
-                                </IconButton>
-                                <IconButton className='itemDeleteIcon' aria-label="delete">
-                                        <DeleteIcon />
-                                </IconButton>
-                            </Box>
-                        </ListItem>
-                        <ListItem
-                            key={i}
-                            disableGutters
-                            sx={{
-                                display:'flex',
-                                justifyContent:'space-between',
-                                borderRadius:'8px'
-                            }}
-                    
-                        >
-                            <Box
-                                sx={{
-                                    display:'flex'
-                                }}
-                            >
-                                <Box
-                                    className='cartItem-img'
-                                    sx={{
-                                        marginRight:'15px'
-                                    }}
-                                >
-                                    <img src={cartItem.image} alt="" />
-                                </Box>
-
-                                <Box>
-                                    {
-                                        cartItem.title
-                                    }
-                                </Box>
-                           </Box>
-                        
-                            <Box className='itemCountActions'>
-                                <IconButton aria-label="reduce">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="caption">
-                                    999
-                                </Typography>
-                                <IconButton aria-label="increase">
-                                    <AddIcon color="#ff0000"/>
-                                </IconButton>
-                                <IconButton className='itemDeleteIcon' aria-label="delete">
-                                        <DeleteIcon />
-                                </IconButton>
-                            </Box>
-                        </ListItem>
-                        <ListItem
-                            key={i}
-                            disableGutters
-                            sx={{
-                                display:'flex',
-                                justifyContent:'space-between',
-                                borderRadius:'8px'
-                            }}
-                    
-                        >
-                            <Box
-                                sx={{
-                                    display:'flex'
-                                }}
-                            >
-                                <Box
-                                    className='cartItem-img'
-                                    sx={{
-                                        marginRight:'15px'
-                                    }}
-                                >
-                                    <img src={cartItem.image} alt="" />
-                                </Box>
-
-                                <Box>
-                                    {
-                                        cartItem.title
-                                    }
-                                </Box>
-                           </Box>
-                        
-                            <Box className='itemCountActions'>
-                                <IconButton aria-label="reduce">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="caption">
-                                    999
-                                </Typography>
-                                <IconButton aria-label="increase">
-                                    <AddIcon color="#ff0000"/>
-                                </IconButton>
-                                <IconButton className='itemDeleteIcon' aria-label="delete">
-                                        <DeleteIcon />
-                                </IconButton>
-                            </Box>
-                        </ListItem>
-                        <ListItem
-                            key={i}
-                            disableGutters
-                            sx={{
-                                display:'flex',
-                                justifyContent:'space-between',
-                                borderRadius:'8px'
-                            }}
-                    
-                        >
-                            <Box
-                                sx={{
-                                    display:'flex'
-                                }}
-                            >
-                                <Box
-                                    className='cartItem-img'
-                                    sx={{
-                                        marginRight:'15px'
-                                    }}
-                                >
-                                    <img src={cartItem.image} alt="" />
-                                </Box>
-
-                                <Box>
-                                    {
-                                        cartItem.title
-                                    }
-                                </Box>
-                           </Box>
-                        
-                            <Box className='itemCountActions'>
-                                <IconButton aria-label="reduce">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="caption">
-                                    999
-                                </Typography>
-                                <IconButton aria-label="increase">
-                                    <AddIcon color="#ff0000"/>
-                                </IconButton>
-                                <IconButton className='itemDeleteIcon' aria-label="delete">
-                                        <DeleteIcon />
-                                </IconButton>
-                            </Box>
-                        </ListItem>
-                        <ListItem
-                            key={i}
-                            disableGutters
-                            sx={{
-                                display:'flex',
-                                justifyContent:'space-between',
-                                borderRadius:'8px'
-                            }}
-                    
-                        >
-                            <Box
-                                sx={{
-                                    display:'flex'
-                                }}
-                            >
-                                <Box
-                                    className='cartItem-img'
-                                    sx={{
-                                        marginRight:'15px'
-                                    }}
-                                >
-                                    <img src={cartItem.image} alt="" />
-                                </Box>
-
-                                <Box>
-                                    {
-                                        cartItem.title
-                                    }
-                                </Box>
-                           </Box>
-                        
-                            <Box className='itemCountActions'>
-                                <IconButton aria-label="reduce">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="caption">
-                                    999
-                                </Typography>
-                                <IconButton aria-label="increase">
-                                    <AddIcon color="#ff0000"/>
-                                </IconButton>
-                                <IconButton className='itemDeleteIcon' aria-label="delete">
-                                        <DeleteIcon />
-                                </IconButton>
-                            </Box>
-                        </ListItem>
-                        <ListItem
-                            key={i}
-                            disableGutters
-                            sx={{
-                                display:'flex',
-                                justifyContent:'space-between',
-                                borderRadius:'8px'
-                            }}
-                    
-                        >
-                            <Box
-                                sx={{
-                                    display:'flex'
-                                }}
-                            >
-                                <Box
-                                    className='cartItem-img'
-                                    sx={{
-                                        marginRight:'15px'
-                                    }}
-                                >
-                                    <img src={cartItem.image} alt="" />
-                                </Box>
-
-                                <Box>
-                                    {
-                                        cartItem.title
-                                    }
-                                </Box>
-                           </Box>
-                        
-                            <Box className='itemCountActions'>
-                                <IconButton aria-label="reduce">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="caption">
-                                    999
-                                </Typography>
-                                <IconButton aria-label="increase">
-                                    <AddIcon color="#ff0000"/>
-                                </IconButton>
-                                <IconButton className='itemDeleteIcon' aria-label="delete">
-                                        <DeleteIcon />
-                                </IconButton>
-                            </Box>
-                        </ListItem>
-                        <ListItem
-                            key={i}
-                            disableGutters
-                            sx={{
-                                display:'flex',
-                                justifyContent:'space-between',
-                                borderRadius:'8px'
-                            }}
-                    
-                        >
-                            <Box
-                                sx={{
-                                    display:'flex'
-                                }}
-                            >
-                                <Box
-                                    className='cartItem-img'
-                                    sx={{
-                                        marginRight:'15px'
-                                    }}
-                                >
-                                    <img src={cartItem.image} alt="" />
-                                </Box>
-
-                                <Box>
-                                    {
-                                        cartItem.title
-                                    }
-                                </Box>
-                           </Box>
-                        
-                            <Box className='itemCountActions'>
-                                <IconButton aria-label="reduce">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="caption">
-                                    999
-                                </Typography>
-                                <IconButton aria-label="increase">
-                                    <AddIcon color="#ff0000"/>
-                                </IconButton>
-                                <IconButton className='itemDeleteIcon' aria-label="delete">
-                                        <DeleteIcon />
-                                </IconButton>
-                            </Box>
-                        </ListItem>
-                        <ListItem
-                            key={i}
-                            disableGutters
-                            sx={{
-                                display:'flex',
-                                justifyContent:'space-between',
-                                borderRadius:'8px'
-                            }}
-                    
-                        >
-                            <Box
-                                sx={{
-                                    display:'flex'
-                                }}
-                            >
-                                <Box
-                                    className='cartItem-img'
-                                    sx={{
-                                        marginRight:'15px'
-                                    }}
-                                >
-                                    <img src={cartItem.image} alt="" />
-                                </Box>
-
-                                <Box>
-                                    {
-                                        cartItem.title
-                                    }
-                                </Box>
-                           </Box>
-                        
-                            <Box className='itemCountActions'>
-                                <IconButton aria-label="reduce">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="caption">
-                                    999
-                                </Typography>
-                                <IconButton aria-label="increase">
-                                    <AddIcon color="#ff0000"/>
-                                </IconButton>
-                                <IconButton className='itemDeleteIcon' aria-label="delete">
-                                        <DeleteIcon />
-                                </IconButton>
-                            </Box>
-                        </ListItem>
-                        <ListItem
-                            key={i}
-                            disableGutters
-                            sx={{
-                                display:'flex',
-                                justifyContent:'space-between',
-                                borderRadius:'8px'
-                            }}
-                    
-                        >
-                            <Box
-                                sx={{
-                                    display:'flex'
-                                }}
-                            >
-                                <Box
-                                    className='cartItem-img'
-                                    sx={{
-                                        marginRight:'15px'
-                                    }}
-                                >
-                                    <img src={cartItem.image} alt="" />
-                                </Box>
-
-                                <Box>
-                                    {
-                                        cartItem.title
-                                    }
-                                </Box>
-                           </Box>
-                        
-                            <Box className='itemCountActions'>
-                                <IconButton aria-label="reduce">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="caption">
-                                    999
-                                </Typography>
-                                <IconButton aria-label="increase">
-                                    <AddIcon color="#ff0000"/>
-                                </IconButton>
-                                <IconButton className='itemDeleteIcon' aria-label="delete">
-                                        <DeleteIcon />
-                                </IconButton>
-                            </Box>
-                        </ListItem>
-                        <ListItem
-                            key={i}
-                            disableGutters
-                            sx={{
-                                display:'flex',
-                                justifyContent:'space-between',
-                                borderRadius:'8px'
-                            }}
-                    
-                        >
-                            <Box
-                                sx={{
-                                    display:'flex'
-                                }}
-                            >
-                                <Box
-                                    className='cartItem-img'
-                                    sx={{
-                                        marginRight:'15px'
-                                    }}
-                                >
-                                    <img src={cartItem.image} alt="" />
-                                </Box>
-
-                                <Box>
-                                    {
-                                        cartItem.title
-                                    }
-                                </Box>
-                           </Box>
-                        
-                            <Box className='itemCountActions'>
-                                <IconButton aria-label="reduce">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="caption">
-                                    999
-                                </Typography>
-                                <IconButton aria-label="increase">
-                                    <AddIcon color="#ff0000"/>
-                                </IconButton>
-                                <IconButton className='itemDeleteIcon' aria-label="delete">
-                                        <DeleteIcon />
-                                </IconButton>
-                            </Box>
-                        </ListItem>
-                        <ListItem
-                            key={i}
-                            disableGutters
-                            sx={{
-                                display:'flex',
-                                justifyContent:'space-between',
-                                borderRadius:'8px'
-                            }}
-                    
-                        >
-                            <Box
-                                sx={{
-                                    display:'flex'
-                                }}
-                            >
-                                <Box
-                                    className='cartItem-img'
-                                    sx={{
-                                        marginRight:'15px'
-                                    }}
-                                >
-                                    <img src={cartItem.image} alt="" />
-                                </Box>
-
-                                <Box>
-                                    {
-                                        cartItem.title
-                                    }
-                                </Box>
-                           </Box>
-                        
-                            <Box className='itemCountActions'>
-                                <IconButton aria-label="reduce">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="caption">
-                                    999
-                                </Typography>
-                                <IconButton aria-label="increase">
-                                    <AddIcon color="#ff0000"/>
-                                </IconButton>
-                                <IconButton className='itemDeleteIcon' aria-label="delete">
-                                        <DeleteIcon />
-                                </IconButton>
-                            </Box>
-                        </ListItem>
-                        <ListItem
-                            key={i}
-                            disableGutters
-                            sx={{
-                                display:'flex',
-                                justifyContent:'space-between',
-                                borderRadius:'8px'
-                            }}
-                    
-                        >
-                            <Box
-                                sx={{
-                                    display:'flex'
-                                }}
-                            >
-                                <Box
-                                    className='cartItem-img'
-                                    sx={{
-                                        marginRight:'15px'
-                                    }}
-                                >
-                                    <img src={cartItem.image} alt="" />
-                                </Box>
-
-                                <Box>
-                                    {
-                                        cartItem.title
-                                    }
-                                </Box>
-                           </Box>
-                        
-                            <Box className='itemCountActions'>
-                                <IconButton aria-label="reduce">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="caption">
-                                    999
-                                </Typography>
-                                <IconButton aria-label="increase">
-                                    <AddIcon color="#ff0000"/>
-                                </IconButton>
-                                <IconButton className='itemDeleteIcon' aria-label="delete">
-                                        <DeleteIcon />
-                                </IconButton>
-                            </Box>
-                        </ListItem>
-                        <ListItem
-                            key={i}
-                            disableGutters
-                            sx={{
-                                display:'flex',
-                                justifyContent:'space-between',
-                                borderRadius:'8px'
-                            }}
-                    
-                        >
-                            <Box
-                                sx={{
-                                    display:'flex'
-                                }}
-                            >
-                                <Box
-                                    className='cartItem-img'
-                                    sx={{
-                                        marginRight:'15px'
-                                    }}
-                                >
-                                    <img src={cartItem.image} alt="" />
-                                </Box>
-
-                                <Box>
-                                    {
-                                        cartItem.title
-                                    }
-                                </Box>
-                           </Box>
-                        
-                            <Box className='itemCountActions'>
-                                <IconButton aria-label="reduce">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="caption">
-                                    999
-                                </Typography>
-                                <IconButton aria-label="increase">
-                                    <AddIcon color="#ff0000"/>
-                                </IconButton>
-                                <IconButton className='itemDeleteIcon' aria-label="delete">
-                                        <DeleteIcon />
-                                </IconButton>
-                            </Box>
-                        </ListItem>
-                        <ListItem
-                            key={i}
-                            disableGutters
-                            sx={{
-                                display:'flex',
-                                justifyContent:'space-between',
-                                borderRadius:'8px'
-                            }}
-                    
-                        >
-                            <Box
-                                sx={{
-                                    display:'flex'
-                                }}
-                            >
-                                <Box
-                                    className='cartItem-img'
-                                    sx={{
-                                        marginRight:'15px'
-                                    }}
-                                >
-                                    <img src={cartItem.image} alt="" />
-                                </Box>
-
-                                <Box>
-                                    {
-                                        cartItem.title
-                                    }
-                                </Box>
-                           </Box>
-                        
-                            <Box className='itemCountActions'>
-                                <IconButton aria-label="reduce">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="caption">
-                                    999
-                                </Typography>
-                                <IconButton aria-label="increase">
-                                    <AddIcon color="#ff0000"/>
-                                </IconButton>
-                                <IconButton className='itemDeleteIcon' aria-label="delete">
-                                        <DeleteIcon />
-                                </IconButton>
-                            </Box>
-                        </ListItem>
-                        <ListItem
-                            key={i}
-                            disableGutters
-                            sx={{
-                                display:'flex',
-                                justifyContent:'space-between',
-                                borderRadius:'8px'
-                            }}
-                    
-                        >
-                            <Box
-                                sx={{
-                                    display:'flex'
-                                }}
-                            >
-                                <Box
-                                    className='cartItem-img'
-                                    sx={{
-                                        marginRight:'15px'
-                                    }}
-                                >
-                                    <img src={cartItem.image} alt="" />
-                                </Box>
-
-                                <Box>
-                                    {
-                                        cartItem.title
-                                    }
-                                </Box>
-                           </Box>
-                        
-                            <Box className='itemCountActions'>
-                                <IconButton aria-label="reduce">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="caption">
-                                    999
-                                </Typography>
-                                <IconButton aria-label="increase">
-                                    <AddIcon color="#ff0000"/>
-                                </IconButton>
-                                <IconButton className='itemDeleteIcon' aria-label="delete">
-                                        <DeleteIcon />
-                                </IconButton>
-                            </Box>
-                        </ListItem>
-                        <ListItem
-                            key={i}
-                            disableGutters
-                            sx={{
-                                display:'flex',
-                                justifyContent:'space-between',
-                                borderRadius:'8px'
-                            }}
-                    
-                        >
-                            <Box
-                                sx={{
-                                    display:'flex'
-                                }}
-                            >
-                                <Box
-                                    className='cartItem-img'
-                                    sx={{
-                                        marginRight:'15px'
-                                    }}
-                                >
-                                    <img src={cartItem.image} alt="" />
-                                </Box>
-
-                                <Box>
-                                    {
-                                        cartItem.title
-                                    }
-                                </Box>
-                           </Box>
-                        
-                            <Box className='itemCountActions'>
-                                <IconButton aria-label="reduce">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="caption">
-                                    999
-                                </Typography>
-                                <IconButton aria-label="increase">
-                                    <AddIcon color="#ff0000"/>
-                                </IconButton>
-                                <IconButton className='itemDeleteIcon' aria-label="delete">
-                                        <DeleteIcon />
-                                </IconButton>
-                            </Box>
-                        </ListItem>
-                        <ListItem
-                            key={i}
-                            disableGutters
-                            sx={{
-                                display:'flex',
-                                justifyContent:'space-between',
-                                borderRadius:'8px'
-                            }}
-                    
-                        >
-                            <Box
-                                sx={{
-                                    display:'flex'
-                                }}
-                            >
-                                <Box
-                                    className='cartItem-img'
-                                    sx={{
-                                        marginRight:'15px'
-                                    }}
-                                >
-                                    <img src={cartItem.image} alt="" />
-                                </Box>
-
-                                <Box>
-                                    {
-                                        cartItem.title
-                                    }
-                                </Box>
-                           </Box>
-                        
-                            <Box className='itemCountActions'>
-                                <IconButton aria-label="reduce">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="caption">
-                                    999
-                                </Typography>
-                                <IconButton aria-label="increase">
-                                    <AddIcon color="#ff0000"/>
-                                </IconButton>
-                                <IconButton className='itemDeleteIcon' aria-label="delete">
-                                        <DeleteIcon />
-                                </IconButton>
-                            </Box>
-                        </ListItem>
-                        <ListItem
-                            key={i}
-                            disableGutters
-                            sx={{
-                                display:'flex',
-                                justifyContent:'space-between',
-                                borderRadius:'8px'
-                            }}
-                    
-                        >
-                            <Box
-                                sx={{
-                                    display:'flex'
-                                }}
-                            >
-                                <Box
-                                    className='cartItem-img'
-                                    sx={{
-                                        marginRight:'15px'
-                                    }}
-                                >
-                                    <img src={cartItem.image} alt="" />
-                                </Box>
-
-                                <Box>
-                                    {
-                                        cartItem.title
-                                    }
-                                </Box>
-                           </Box>
-                        
-                            <Box className='itemCountActions'>
-                                <IconButton aria-label="reduce">
-                                    <RemoveIcon />
-                                </IconButton>
-                                <Typography variant="caption">
-                                    999
-                                </Typography>
-                                <IconButton aria-label="increase">
-                                    <AddIcon color="#ff0000"/>
-                                </IconButton>
-                                <IconButton className='itemDeleteIcon' aria-label="delete">
-                                        <DeleteIcon />
-                                </IconButton>
-                            </Box>
-                        </ListItem>
-                        
-                    </React.Fragment>
-                ))}
+                                
+                                    <Box className='itemCountActions'>
+                                        <IconButton aria-label="reduce">
+                                            <RemoveIcon />
+                                        </IconButton>
+                                        <Typography variant="caption">
+                                            999
+                                        </Typography>
+                                        <IconButton aria-label="increase">
+                                            <AddIcon color="#ff0000"/>
+                                        </IconButton>
+                                        <IconButton 
+                                            className='itemDeleteIcon' 
+                                            aria-label="delete"
+                                            onClick={(e)=>{cartItemRemoveHandler(cartItem.id)}}
+                                        >
+                                                <DeleteIcon />
+                                        </IconButton>
+                                    </Box>
+                                </ListItem>
+                            </React.Fragment>
+                        ))
+                        :''
+                    }
                 </List>
                 <Box 
                     sx={{
@@ -1117,7 +309,7 @@ const mapStateToProps=state=>{
     return state
 }
 const mapDispatchToprops={
-    
+    removeFromCartAction
 }
 
 export default connect(mapStateToProps,mapDispatchToprops)(CartList);

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React,{useEffect} from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
@@ -18,7 +18,7 @@ import {createTheme,ThemeProvider} from '@mui/material/styles'
 
 
 export default function RecipeReviewCard({productItem,addCartHandler}) {
-
+  
   const productItemTheme=createTheme({
     componentns:{
       MuiPaper:{
@@ -35,7 +35,7 @@ export default function RecipeReviewCard({productItem,addCartHandler}) {
       },
     }
   })
-  // console.log(productItem)
+
   return (  
     <ThemeProvider theme={productItemTheme}>
 
@@ -74,7 +74,7 @@ export default function RecipeReviewCard({productItem,addCartHandler}) {
               
               <CardActions  sx={{textAlign:"right"}}>
                 <IconButton 
-                  className='' 
+                  className={productItem.isInCart ===true ? 'active':''}
                   aria-label="add to favorites"
                   onClick={(e)=>addCartHandler(e,productItem)}
                 >

@@ -59,6 +59,7 @@ const PreviewSliderItem = ({sliderItem,addCartHandler}) =>{
               </div>
               <div className='inCart ' title="Add cart">
                 <IconButton
+                  className={sliderItem.isInCart ===true ? 'active':''}
                   onClick={(e)=>addCartHandler(e,sliderItem)}
                 >
                   <ShoppingBasketIcon />

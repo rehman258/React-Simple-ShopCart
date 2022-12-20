@@ -12,7 +12,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import PreviewSliderItem from './PreviewSliderItem';
 
-
+import {connect} from 'react-redux';
 
 const BannerNextArrow = (props)=>{
     const {className,style,onClick} = props;
@@ -38,7 +38,7 @@ const BannerPrevArrow = (props)=>{
 
 
 
-const PreviewSlider = ({sliderList=[],addCartHandler}) => {
+const PreviewSlider = ({addCartHandler,productReducer}) => {
     const settings = {
         dots: false,
         infinite: true,
@@ -54,15 +54,25 @@ const PreviewSlider = ({sliderList=[],addCartHandler}) => {
     //   console.log(sliderList)
     return (
             <Slider {...settings} style={{backgroundColor:'#fff'}}>
-                {
-                    sliderList.map((sliderItem,i)=>(
-                        <div key={i} className="preview-sliderItem">
-                            <PreviewSliderItem addCartHandler={addCartHandler} sliderItem={sliderItem}/>
-                        </div>
-                    ))
+                {   
+                    productReducer.products !== null ?
+                        productReducer.products.map((sliderItem,i)=>(
+                            <div key={i} className="preview-sliderItem">
+                                <PreviewSliderItem addCartHandler={addCartHandler} sliderItem={sliderItem}/>
+                            </div>
+                        ))
+                    :''
                 }
             </Slider>
     );
 }
 
-export default PreviewSlider;
+const mapStateToProps=state=>{
+    return state
+}
+
+const mapDispatchToProps={
+
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(PreviewSlider);

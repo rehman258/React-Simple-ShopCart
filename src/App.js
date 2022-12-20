@@ -12,10 +12,18 @@ import Products from './pages/products/Products'
 import CartList from './pages/cartList/CartList'
 import Contact from './pages/contact/Contact'
 
+import{connect} from 'react-redux';
+import {loadCartItems} from './redux/actions/CartActions';
+import Storage from './Storage/Storage';
 
 import FullLayout from './layout/FullLayout';
 
-function App() {
+function App({loadCartItems}) {
+  useEffect(()=>{
+    if(Storage._getStorage()){
+      loadCartItems(Storage._getStorage())
+    }
+  },[])
   return (
     <FullLayout>
         <Routes>
@@ -29,4 +37,13 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps=state=>{
+  return state
+}
+
+const mapDispatchToProps={
+  loadCartItems
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

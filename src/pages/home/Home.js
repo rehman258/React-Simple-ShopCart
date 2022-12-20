@@ -24,14 +24,12 @@ import CategoryFilter from '../../components/CategoryFilter';
 
 
 import {loadProducts} from '../../services/services';
-import {loadProductsAction} from '../../redux/actions/ProductAction';
+import {loadProductsAction,updateProducInCarttAction} from '../../redux/actions/ProductAction';
 
-import {addToCartAction} from '../../redux/actions/CartActions';
+import {addToCartAction,loadCartItems} from '../../redux/actions/CartActions';
+import Storage from '../../Storage/Storage';
 
-
-const Home = ({homeReducer,productReducer,cartReducer,loadProductsAction,addToCartAction}) => {
-    // console.log(productReducer)
-
+const Home = ({homeReducer,productReducer,cartReducer,loadProductsAction,addToCartAction,updateProducInCarttAction,loadCartItems}) => {
     
 
     const homeTheme = createTheme({
@@ -92,25 +90,74 @@ const Home = ({homeReducer,productReducer,cartReducer,loadProductsAction,addToCa
 
     
     useEffect(()=>{
-        (async()=>{
-            loadProductsAction(await loadProducts())
-        })()
+            // // console.log();
+            if(Storage._getStorage() !== null ){
+                (async()=>{
+                    // console.log('cart is not null')
+                    // const tempProductObject = await loadProducts();
+                    // for (let i=0; i < tempProductObject.list.length; i++){
+                    // //     // console.log(
+                    //         for(let j=0; j < Storage._getStorage().length;i++){
+                    //             if(tempProductObject.list[i].id === Storage._getStorage()[j]){
+                    //                 console.log(tempProductObject.list[i])
+                    //             }
+                    //         }
+                    // }
+                })()
+                // loadProductsAction(
+                //     {
+                //         ...tempProductObject,
+                //         list:tempProductObject.list.map(item=>cartReducer.cartList.includes(item)?{...item,isInCart:true}:item)
+                //     }
+                // )
+                // console.log(tempProductObject)
+                // console.log(
+                        // if (id == cardArray[len].dataset.id) {
+                        //     return len;
+                        // }
+                    // tempProductObject.list.map(item=>cartReducer.cartList.includes(item))
+                // )
+            }else{
+                (async()=>{
+
+                loadProductsAction(await loadProducts())
+            })()
+            
+            }
     },[])
 
-    
+
     const addCartHandler =(e,item)=>{
-        if(cartReducer.cartList.find(cartItem=>cartItem===item)){
-            toast.info("Product's already added to cart",{
-                position: "bottom-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            })
+        if(cartReducer.cartList !== null){
+            if(cartReducer.cartList.find(cartItem=>cartItem.id===item.id)){
+                toast.info("Product's already added to cart",{
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                })
+            }else{
+                toast.success(' Product added to cart',{
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                })
+                addToCartAction({...item,isInCart:true});
+                updateProducInCarttAction({...item,isInCart:true});
+                Storage._addStorage({...item,isInCart:true});
+
+            }
         }else{
+
             toast.success(' Product added to cart',{
                 position: "bottom-right",
                 autoClose: 5000,
@@ -119,12 +166,15 @@ const Home = ({homeReducer,productReducer,cartReducer,loadProductsAction,addToCa
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme: "light",
+                theme: "dark",
             })
-            addToCartAction(item)
-        }
-    }
+            addToCartAction({...item,isInCart:true})
+            Storage._addStorage({...item,isInCart:true});
 
+            updateProducInCarttAction({...item,isInCart:true})
+        }
+       
+    }
     return (
         <section>
             <ThemeProvider theme={homeTheme}>
@@ -179,10 +229,14 @@ const Home = ({homeReducer,productReducer,cartReducer,loadProductsAction,addToCa
                     Products
                     </span>
                 </Typography>
-                <CategoryFilter
-                    addCartHandler={addCartHandler}
-                    gallery={homeReducer.products}
-                />
+                {
+                    homeReducer.products !== null ?
+
+                    <CategoryFilter
+                        addCartHandler={addCartHandler}
+                        gallery={homeReducer.products}
+                    />:''
+                }
                 <div className="line-effect"></div>
                 <Typography className="section-header">
                     <span>
@@ -203,7 +257,9 @@ const mapStateToProps=state=>{
 }
 const mapDispatchToProps={
     loadProductsAction,
-    addToCartAction
+    addToCartAction,
+    updateProducInCarttAction,
+    loadCartItems
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Home);

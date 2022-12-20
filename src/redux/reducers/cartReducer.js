@@ -2,18 +2,8 @@ import Types from '../types/types';
 
 
 const cartState = {
-    cartList:[
-        {
-            category: "men's clothing",
-            description: "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-            id: 1,
-            image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-            price: 109.95,
-            isInCart:false,
-            rating: {rate: 3.9, count: 120},
-            title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-        }
-    ],
+    cartList:null,
+    isReload:false,
 } 
 
 // cont checkStateItem =
@@ -21,8 +11,19 @@ const cartState = {
 const cartReducer = (state=cartState,{type,payload})=>{
 
     switch(type){
+        case Types.LOAD_CART_ITEMS:
+            console.log(payload)
+            return{
+                ...state,
+                cartList:payload
+            }
         case Types.ADD_TO_CART:
-            const updatedCartList =  [...state.cartList,payload]
+            let updatedCartList=[];
+            if(state.cartList===null){
+                updatedCartList=[payload]
+            }else{
+                updatedCartList =  [...state.cartList,payload]
+            }
             return {
                 ...state,
                 cartList:updatedCartList

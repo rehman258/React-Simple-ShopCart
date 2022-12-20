@@ -2,6 +2,13 @@ import Types from '../types/types';
 
 
 
+export const loadCartItems= (list)=>{
+    return {
+        type:Types.LOAD_CART_ITEMS,
+        payload:list
+    }
+}
+
 export const addToCartAction =(item)=>{
     return{
         type:Types.ADD_TO_CART,
