@@ -22,6 +22,6 @@ export const loadProducts = async()=>{
         })
     })
 
-    console.log('service worked')
+    // console.log('service worked')
     return modifiedData;
 }

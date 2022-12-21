@@ -18,11 +18,18 @@ import Storage from './Storage/Storage';
 
 import FullLayout from './layout/FullLayout';
 
-function App({loadCartItems}) {
+import { loadProducts } from './services/services';
+import { loadProductsAction } from './redux/actions/ProductAction';
+
+function App({loadCartItems,productReducer}) {
   useEffect(()=>{
-    if(Storage._getStorage()){
-      loadCartItems(Storage._getStorage())
-    }
+    (async()=>{
+      // console.log(await loadProducts())
+      
+      if(Storage._getStorage()){
+        loadCartItems(Storage._getStorage())
+      }
+    })()
   },[])
   return (
     <FullLayout>

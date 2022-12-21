@@ -91,10 +91,14 @@ const Home = ({homeReducer,productReducer,cartReducer,loadProductsAction,addToCa
     
     useEffect(()=>{
             // // console.log();
+            
             if(Storage._getStorage() !== null ){
                 (async()=>{
                     // console.log('cart is not null')
-                    // const tempProductObject = await loadProducts();
+                    const tempProductObject = await loadProducts();
+                    tempProductObject.list.forEach((listItem)=>{
+                        Storage._getStorage().forEach(cartItem=> listItem.id === cartItem.id ?()=>{console.log(cartItem)}:'')
+                    })
                     // for (let i=0; i < tempProductObject.list.length; i++){
                     // //     // console.log(
                     //         for(let j=0; j < Storage._getStorage().length;i++){
@@ -103,6 +107,7 @@ const Home = ({homeReducer,productReducer,cartReducer,loadProductsAction,addToCa
                     //             }
                     //         }
                     // }
+                    loadProductsAction(tempProductObject)
                 })()
                 // loadProductsAction(
                 //     {
@@ -119,9 +124,8 @@ const Home = ({homeReducer,productReducer,cartReducer,loadProductsAction,addToCa
                 // )
             }else{
                 (async()=>{
-
-                loadProductsAction(await loadProducts())
-            })()
+                    loadProductsAction(await loadProducts())
+                })()
             
             }
     },[])
