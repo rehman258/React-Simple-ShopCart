@@ -18,6 +18,7 @@ export const loadProducts = async()=>{
     data.forEach(dataItem=>{
         modifiedData.list.push({
             ...dataItem,
+            quantity:1,
             isInCart:false,
         })
     })

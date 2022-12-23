@@ -1,19 +1,9 @@
-import React from 'react';
-import DeleteIcon from '@mui/icons-material/Delete';
-import RemoveIcon from '@mui/icons-material/Remove';
-import AddIcon from '@mui/icons-material/Add';
+import React,{useState,useEffect} from 'react';
 
 
 import {
     Box,
     List,
-    ListItem,
-    Typography,
-    ListItemText,
-    IconButton,
-
-
-
     TableContainer,
     Table,
     TableHead,
@@ -29,19 +19,43 @@ import {createTheme,ThemeProvider} from '@mui/material/styles';
 
 import '../../assets/style/cartStyle.css'
 
-import {removeFromCartAction} from '../../redux/actions/CartActions';
+import {removeFromCartAction,updateCartItem} from '../../redux/actions/CartActions';
 import Storage from '../../Storage/Storage';
 
 import {connect} from 'react-redux';
 
 
-const CartList = ({cartReducer,removeFromCartAction}) => {
+import CartListItem from '../../components/CartListItem';
 
+const CartList = ({cartReducer,removeFromCartAction,updateCartItem}) => {
+    const [cartList,setCartList] = useState([]);
     const cartItemRemoveHandler=(id)=>{
         removeFromCartAction(id)
         Storage._removeFromStore(id)
     }
 
+
+    const updateCartItemQuantity=(actionType,item)=>{
+        // console.log(actionType,item)
+        if(actionType==='+'){
+            item.quantity=item.quantity+1
+            updateCartItem(item)
+        }else if(actionType==='-'){
+            if(item.quantity > 1){
+                item.quantity=item.quantity-1
+                updateCartItem(item)
+            }
+        }else if(actionType==='|'){
+            item.quantity=1
+            updateCartItem(item)
+        }
+    }
+
+
+
+    useEffect(()=>{
+        setCartList(cartReducer.cartList)
+    },[])
 
     return (
         <section className='cartList'>
@@ -51,63 +65,7 @@ const CartList = ({cartReducer,removeFromCartAction}) => {
                     cartReducer.cartList !== null ?
                         cartReducer.cartList.map((cartItem,i) => (
                             <React.Fragment key={i}>
-                                <ListItem
-                                    
-                                    disableGutters
-                                    sx={{
-                                        display:'flex',
-                                        justifyContent:'space-between',
-                                        borderRadius:'8px'
-                                    }}
-                            
-                                >
-                                    <Box
-                                        sx={{
-                                            display:'flex'
-                                        }}
-                                    >
-                                        <Box
-                                            className='cartItem-img'
-                                            sx={{
-                                                marginRight:'15px'
-                                            }}
-                                        >
-                                            <img src={cartItem.image} alt="" />
-                                        </Box>
-
-                                        <Box
-                                            sx={{
-                                                maxWidth:'450px',
-                                                textOverflow: 'ellipsis',
-                                                whiteSpace: 'nowrap',
-                                                overflow: 'hidden',
-                                            }}
-                                        >
-                                            {
-                                                cartItem.title
-                                            }
-                                        </Box>
-                                </Box>
-                                
-                                    <Box className='itemCountActions'>
-                                        <IconButton aria-label="reduce">
-                                            <RemoveIcon />
-                                        </IconButton>
-                                        <Typography variant="caption">
-                                            999
-                                        </Typography>
-                                        <IconButton aria-label="increase">
-                                            <AddIcon color="#ff0000"/>
-                                        </IconButton>
-                                        <IconButton 
-                                            className='itemDeleteIcon' 
-                                            aria-label="delete"
-                                            onClick={(e)=>{cartItemRemoveHandler(cartItem.id)}}
-                                        >
-                                                <DeleteIcon />
-                                        </IconButton>
-                                    </Box>
-                                </ListItem>
+                                <CartListItem cartitem={cartItem} updateCartItemQuantity={updateCartItemQuantity} removeHandler={cartItemRemoveHandler} />
                             </React.Fragment>
                         ))
                         :''
@@ -309,7 +267,8 @@ const mapStateToProps=state=>{
     return state
 }
 const mapDispatchToprops={
-    removeFromCartAction
+    removeFromCartAction,
+    updateCartItem
 }
 
 export default connect(mapStateToProps,mapDispatchToprops)(CartList);

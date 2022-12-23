@@ -26,6 +26,7 @@ export const removeFromCartAction =(id)=>{
 
 
 export const updateCartItem =(item)=>{
+    // console.log(item)
     return{
         type:Types.UPDATE_CART_ITEM,
         payload:item

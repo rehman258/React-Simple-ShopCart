@@ -90,38 +90,18 @@ const Home = ({homeReducer,productReducer,cartReducer,loadProductsAction,addToCa
 
     
     useEffect(()=>{
-            // // console.log();
             
             if(Storage._getStorage() !== null ){
                 (async()=>{
-                    // console.log('cart is not null')
-                    const tempProductObject = await loadProducts();
-                    tempProductObject.list.forEach((listItem)=>{
-                        Storage._getStorage().forEach(cartItem=> listItem.id === cartItem.id ?()=>{console.log(cartItem)}:'')
-                    })
-                    // for (let i=0; i < tempProductObject.list.length; i++){
-                    // //     // console.log(
-                    //         for(let j=0; j < Storage._getStorage().length;i++){
-                    //             if(tempProductObject.list[i].id === Storage._getStorage()[j]){
-                    //                 console.log(tempProductObject.list[i])
-                    //             }
-                    //         }
-                    // }
-                    loadProductsAction(tempProductObject)
-                })()
-                // loadProductsAction(
-                //     {
-                //         ...tempProductObject,
-                //         list:tempProductObject.list.map(item=>cartReducer.cartList.includes(item)?{...item,isInCart:true}:item)
-                //     }
-                // )
-                // console.log(tempProductObject)
-                // console.log(
-                        // if (id == cardArray[len].dataset.id) {
-                        //     return len;
-                        // }
-                    // tempProductObject.list.map(item=>cartReducer.cartList.includes(item))
-                // )
+                    const tempProductObject = await loadProducts(); 
+                    return tempProductObject
+                })().then(res=>{
+
+                    const tempMappedArr = res.list.map(mapItem => Storage._getStorage().find(item=>item.id===mapItem.id) ? {...mapItem,isInCart:true}:mapItem)
+
+                    loadProductsAction({...res,list:tempMappedArr})
+                })
+                
             }else{
                 (async()=>{
                     loadProductsAction(await loadProducts())

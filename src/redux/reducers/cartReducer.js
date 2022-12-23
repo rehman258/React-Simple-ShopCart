@@ -36,8 +36,12 @@ const cartReducer = (state=cartState,{type,payload})=>{
             }
         
         case Types.UPDATE_CART_ITEM:
-            console.log('update')
-            return state
+            // console.log
+            const updatedQuantityCartList = state.cartList.map(item=>item!==payload.id?item:payload)
+            return {
+                ...state,
+                cartList:updatedQuantityCartList
+            }
 
         default : return state
 
