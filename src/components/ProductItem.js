@@ -1,7 +1,7 @@
-import React,{useEffect} from 'react';
-import { styled } from '@mui/material/styles';
+import React,{} from 'react';
+// import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
-import Grid from '@mui/material/Grid';
+// import Grid from '@mui/material/Grid';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Box from '@mui/material/Box';
@@ -11,11 +11,12 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 
-import FavoriteIcon from '@mui/icons-material/Favorite';
+// import FavoriteIcon from '@mui/icons-material/Favorite';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import {createTheme,ThemeProvider} from '@mui/material/styles'
 
+import {Link} from 'react-router-dom';
 
 export default function RecipeReviewCard({productItem,addCartHandler}) {
   
@@ -77,19 +78,26 @@ export default function RecipeReviewCard({productItem,addCartHandler}) {
                   className={productItem.isInCart ===true ? 'active':''}
                   aria-label="add to favorites"
                   onClick={(e)=>addCartHandler(e,productItem)}
+                  sx={{
+                    marginRight:'10px'
+                  }}
                 >
                     <ShoppingBasketIcon />
                 </IconButton>
-              
+{/*               
                 <IconButton 
                   className='active' 
                   aria-label="add to favorites"
                 >
                     <FavoriteIcon />
-                </IconButton>
-                <IconButton>
-                  <VisibilityIcon/>
-              </IconButton>
+                </IconButton> */}
+                <Link to={`/details/${productItem.id}`}
+                  aria-label="view details"
+                >
+                  <IconButton>
+                      <VisibilityIcon/>
+                  </IconButton>
+                </Link>
               </CardActions>
           </Card>
         </Paper>

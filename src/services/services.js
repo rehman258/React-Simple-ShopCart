@@ -26,3 +26,9 @@ export const loadProducts = async()=>{
     // console.log('service worked')
     return modifiedData;
 }
+
+export const loadSingleProduct = async(id)=>{
+    // console.log(`${BaseUrl}/${id}`)
+    const {data} = await axios.get(`${BaseUrl}/${id}`)
+    return data
+}

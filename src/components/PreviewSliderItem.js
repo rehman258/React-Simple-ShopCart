@@ -11,7 +11,9 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 // import Button from '@mui/material/Button';
 
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import{Link} from 'react-router-dom';
+
+// import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
@@ -52,11 +54,11 @@ const PreviewSliderItem = ({sliderItem,addCartHandler}) =>{
           />
          <div className='cardOvarley'>
             <div>
-              <div className="favorite active" title="Add with list">
+              {/* <div className="favorite active" title="Add with list">
                 <IconButton>
                   <FavoriteIcon />
                 </IconButton>
-              </div>
+              </div> */}
               <div className='inCart ' title="Add cart">
                 <IconButton
                   className={sliderItem.isInCart ===true ? 'active':''}
@@ -67,9 +69,11 @@ const PreviewSliderItem = ({sliderItem,addCartHandler}) =>{
               </div>
             </div>
             <div className='overView ' title="View details">
-              <IconButton>
-                <VisibilityIcon/>
-              </IconButton>
+              <Link to={`/details/${sliderItem.id}`}>
+                <IconButton>
+                  <VisibilityIcon/>
+                </IconButton>
+              </Link>
             </div>
          </div> 
         </Card>

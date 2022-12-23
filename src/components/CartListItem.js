@@ -76,7 +76,7 @@ const CartListItem = ({removeHandler,updateCartItemQuantity,cartitem,cartitem:{i
                                                 }}
                                             >
                                                 {
-                                                    price * quantity
+                                                    (price * quantity).toFixed(2)
                                                 } $
                                             </Box>
                                         </Box>
