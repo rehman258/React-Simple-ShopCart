@@ -90,30 +90,15 @@ const Home = ({homeReducer,productReducer,cartReducer,loadProductsAction,addToCa
 
     
     useEffect(()=>{
-            
-            if(Storage._getStorage() !== null ){
-                (async()=>{
-                    const tempProductObject = await loadProducts(); 
-                    return tempProductObject
-                })().then(res=>{
-
-                    const tempMappedArr = res.list.map(mapItem => Storage._getStorage().find(item=>item.id===mapItem.id) ? {...mapItem,isInCart:true}:mapItem)
-
-                    loadProductsAction({...res,list:tempMappedArr})
-                })
-                
-            }else{
-                (async()=>{
-                    loadProductsAction(await loadProducts())
-                })()
-            
-            }
+        (async()=>{
+            loadProductsAction(await loadProducts())
+        })()
     },[])
 
 
     const addCartHandler =(e,item)=>{
-        if(cartReducer.cartList !== null){
-            if(cartReducer.cartList.find(cartItem=>cartItem.id===item.id)){
+
+            if(Storage._checkStorage(item.id)){
                 toast.info("Product's already added to cart",{
                     position: "bottom-right",
                     autoClose: 5000,
@@ -136,29 +121,10 @@ const Home = ({homeReducer,productReducer,cartReducer,loadProductsAction,addToCa
                     theme: "dark",
                 })
                 addToCartAction({...item,isInCart:true,});
-
                 updateProducInCarttAction({...item,isInCart:true,});
-
                 Storage._addStorage({...item,isInCart:true});
 
             }
-        }else{
-
-            toast.success(' Product added to cart',{
-                position: "bottom-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            })
-            addToCartAction({...item,isInCart:true})
-            Storage._addStorage({...item,isInCart:true});
-
-            updateProducInCarttAction({...item,isInCart:true})
-        }
        
     }
     return (

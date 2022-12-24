@@ -1,5 +1,7 @@
 import BaseUrl from './BaseUrl';
 import axios from 'axios';
+import Storage from '../Storage/Storage';
+
 
 export const loadProducts = async()=>{
     const {data} = await axios.get(`${BaseUrl}`)
@@ -14,16 +16,21 @@ export const loadProducts = async()=>{
         list:[],
         categories:[...filterTabs]
     }
-    
-    data.forEach(dataItem=>{
-        modifiedData.list.push({
-            ...dataItem,
+        modifiedData.list = data.map(item=>Storage._checkStorage(item.id)
+        ?
+        {
+            ...item,
+            quantity:1,
+            isInCart:true,
+        }
+        :
+        {
+            ...item,
             quantity:1,
             isInCart:false,
-        })
-    })
-
-    // console.log('service worked')
+        }
+        )
+    
     return modifiedData;
 }
 

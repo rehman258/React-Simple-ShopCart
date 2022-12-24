@@ -90,7 +90,7 @@ const Details = ({addToCartAction}) => {
                             fontSize:'30px',
                             marginBottom:'10px',
                             '& span':{
-                                borderBottom:'2px solid #fff'
+                                borderBottom:'2px solid #fff',
                             }
                         },
                         '&.details-price':{
@@ -109,9 +109,6 @@ const Details = ({addToCartAction}) => {
                         },
                         '&.details-description-content':{
                             color:'#fff',
-                            // fontSize:'19px',
-                            // fontWeight:'bold',
-                            // fontStyle:'italic',
                             marginBottom:'25px'
                         },
                     }
@@ -123,11 +120,7 @@ const Details = ({addToCartAction}) => {
     return (
         <section>
             <ThemeProvider theme={detailsTheme}>
-                {/* <Typography className="section-header">
-                        <span>
-                            About Product
-                        </span>
-                </Typography> */}
+               
                 <ToastContainer/>
                 <Box
                     sx={{
