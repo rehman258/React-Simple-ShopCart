@@ -135,8 +135,10 @@ const Home = ({homeReducer,productReducer,cartReducer,loadProductsAction,addToCa
                     progress: undefined,
                     theme: "dark",
                 })
-                addToCartAction({...item,isInCart:true});
-                updateProducInCarttAction({...item,isInCart:true});
+                addToCartAction({...item,isInCart:true,});
+
+                updateProducInCarttAction({...item,isInCart:true,});
+
                 Storage._addStorage({...item,isInCart:true});
 
             }

@@ -30,5 +30,9 @@ export const loadProducts = async()=>{
 export const loadSingleProduct = async(id)=>{
     // console.log(`${BaseUrl}/${id}`)
     const {data} = await axios.get(`${BaseUrl}/${id}`)
-    return data
+    return {
+        ...data,
+        quantity:1,
+        isInCart:false,
+    }
 }

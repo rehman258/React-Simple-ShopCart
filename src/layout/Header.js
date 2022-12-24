@@ -160,12 +160,12 @@ const Header = () => {
                                 <LanguageIcon/>
                             </a>
                         </li>
-                        <li>
+                        {/* <li>
                             
                             <a href="https://rehman258.vercel.app/" target="_blank">
                                 <LanguageIcon/>
                             </a>
-                        </li>
+                        </li> */}
                     </ul>
                 </Grid>
                 <Grid item xs={1}>

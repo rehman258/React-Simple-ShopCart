@@ -16,6 +16,12 @@ class Storage{
         }
         
     }
+    _checkStorage(id){
+        const isInCart = this._getStorage().find(item=>item.id===Number(id))
+        if(isInCart) return isInCart
+        return null 
+    }
+
     _removeFromStore(id){
         if(JSON.parse(localStorage.getItem('products'))){
             // localStorage.setItem('products',JSON.stringify(product))
