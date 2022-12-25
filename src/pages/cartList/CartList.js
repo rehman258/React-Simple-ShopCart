@@ -42,7 +42,6 @@ const CartList = ({cartReducer,removeFromCartAction,updateCartItem}) => {
     const updateCartItemQuantity=(actionType,item)=>{
         // console.log(actionType,item)
 
-        
 
         if(actionType==='+'){
             item.quantity=item.quantity+1
@@ -57,28 +56,35 @@ const CartList = ({cartReducer,removeFromCartAction,updateCartItem}) => {
             updateCartItem(item)
         }
 
-        if(cartList){
-            let tempCost=0;
-            cartList.forEach(cartItem => {
-                tempCost += cartItem.price * cartItem.quantity
-            });
-            setFullCost(tempCost)
-        }
+        // if(cartList){
+        //     let tempCost=0;
+        //     cartList.forEach(cartItem => {
+        //         tempCost += cartItem.price * cartItem.quantity
+        //     });
+        //     setFullCost(tempCost)
+        // }
+        // setFullCost(calcFullPrice())
+
     }
 
+    const calcFullPrice=()=> {
+        let finallyCost = 0;
+
+            cartReducer.cartList.forEach(item=>{
+                finallyCost+= item.price*item.quantity
+            })        
+        return finallyCost
+    }
 
 
     useEffect(()=>{
         setCartList(cartReducer.cartList)
-        let tempCost = 0;
-        if(Storage._getStorage()){
-            let tempCost=0;
-            Storage._getStorage().forEach(cartItem => {
-                tempCost += cartItem.price * cartItem.quantity
-            });
-            setFullCost(tempCost)
+        // if(cartReducer.cartList)
+       
+        if(cartReducer.cartList){
+            setFullCost(calcFullPrice())
         }
-    },[])
+    },[cartReducer])
 
     return (
         <section className='cartList'>
@@ -124,7 +130,9 @@ const CartList = ({cartReducer,removeFromCartAction,updateCartItem}) => {
                                     <i> Full cost is: 
                                         <b>
                                             {
+                                                cartList !== null ?
                                                 fullCost.toFixed(2)
+                                                :''
                                             }
                                         </b>
                                     </i> 
