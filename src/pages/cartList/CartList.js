@@ -33,6 +33,35 @@ import CartListItem from '../../components/CartListItem';
 const CartList = ({cartReducer,removeFromCartAction,updateCartItem}) => {
     const [cartList,setCartList] = useState(null);
     const [fullCost,setFullCost] =useState(0);
+
+    const cartListTheme = createTheme({
+        components:{
+            MuiTextField:{
+                styleOverrides:{
+                    root:{
+                        marginBottom:'20px',
+                        // height:'30px',
+                        color:'#fff',
+                        '& fieldset':{
+                            borderRadius:'8px',
+                            borderColor:'#30abb0',
+                            fontSize:'12px'
+                        },
+                        '& input':{
+                            color:'#fff',
+                            fontSize:'12px'
+                        },
+                        '& .MuiFormLabel-root':{
+                            color:'#fff',
+                            fontSize:'12px'
+                        }
+                    }
+                }
+            }
+        }
+    })
+
+
     const cartItemRemoveHandler=(id)=>{
         removeFromCartAction(id)
         Storage._removeFromStore(id)
@@ -54,6 +83,7 @@ const CartList = ({cartReducer,removeFromCartAction,updateCartItem}) => {
         }else if(actionType==='|'){
             item.quantity=1
             updateCartItem(item)
+           
         }
 
         // if(cartList){
@@ -79,112 +109,148 @@ const CartList = ({cartReducer,removeFromCartAction,updateCartItem}) => {
 
     useEffect(()=>{
         setCartList(cartReducer.cartList)
-        // if(cartReducer.cartList)
        
         if(cartReducer.cartList){
             setFullCost(calcFullPrice())
         }
+        console.log(cartList)
     },[cartReducer])
 
     return (
-        <section className='cartList'>
-            <form action="" style={{display:'flex'}}>
-                <List sx={{ width: '100%', maxWidth: '59%',display:'inline-block'}}>
-                {
-                    cartReducer.cartList !== null ?
-                        cartReducer.cartList.map((cartItem,i) => (
-                            <React.Fragment key={i}>
-                                <CartListItem cartitem={cartItem} updateCartItemQuantity={updateCartItemQuantity} removeHandler={cartItemRemoveHandler} />
-                            </React.Fragment>
-                        ))
-                        :''
-                    }
-                </List>
-                <Box 
-                    sx={{
-                        width: '100%', 
-                        maxWidth: '40%',
-                    }}
-                    className="cartListPaymentTable"
-                >
-                    <Box
-                        className="cartListPayment"
-                        
-                    >
+        <ThemeProvider theme={cartListTheme}>
 
-                    </Box>
-                        
-                    <Box
-                        sx={{
-                            marginTop:'30px',
-                        }}
-                    >
-                        
-                        <Grid container>
-                            <Grid item xs={12}>
-                                <Typography
+            <section className='cartList'>
+                <form action="" style={{display:'flex'}}>
+                    <Grid container>
+                        <Grid item xs={8}>
+                            <List 
+                                sx={{ 
+                                    width: '100%', 
+                                    // maxWidth: '59%',
+                                    display:'inline-block'
+                                }}
+                            >
+                                {
+                                    cartReducer.cartList !== null ?
+                                        cartReducer.cartList.map((cartItem,i) => (
+                                                <React.Fragment key={i}>
+                                                    <CartListItem cartitem={cartItem} updateCartItemQuantity={updateCartItemQuantity} removeHandler={cartItemRemoveHandler} />
+                                                </React.Fragment>
+                                            ))
+                                        :
+                                        <Typography
+                                            sx={{
+                                                fontSize:'18px',
+                                                textAlign:'center'
+                                            }}
+                                            >
+                                            There is not added product in Cart yet.
+                                        </Typography>
+                                }
+                            
+                            </List>
+                        </Grid>
+                        <Grid item xs={4}>
+
+                            <Box 
+                                sx={{
+                                    width: '100%', 
+                                    // maxWidth: '40%',
+                                }}
+                                className="cartListPaymentTable"
+                            >
+                                <Box
+                                    className="cartListPayment"
+                                    
+                                >
+
+                                </Box>
+                                    
+                                <Box
                                     sx={{
-                                        marginBottom:'15px'
+                                        marginTop:'30px',
+                                        padding:'0px 15px'
                                     }}
                                 >
-                                    <i> Full cost is: 
-                                        <b>
-                                            {
-                                                cartList !== null ?
-                                                fullCost.toFixed(2)
-                                                :''
-                                            }
-                                        </b>
-                                    </i> 
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <TextField
-                                    fullWidth   
-                                    label="First Name"
-                                    variant='outlined'
-                                />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <TextField
-                                    fullWidth   
-                                    label="Last Name"
-                                    variant='outlined'
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    fullWidth
-                                    label="Email Address"
-                                    variant='outlined'
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    fullWidth
-                                    label="Card Number"
-                                    variant='outlined'
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                            <Button 
-                                sx={{
-                                    display:'block',
-                                    width:'100%'
-                                }}
-                                variant="contained"
-                            >
-                                <b>Order</b>
-                            </Button>
-                            </Grid>
+                                    
+                                    <Grid container>
+                                        <Grid item xs={12}>
+                                            <Typography
+                                                sx={{
+                                                    marginBottom:'15px'
+                                                }}
+                                            >
+                                                <i> Full cost is: 
+                                                    <b>
+                                                        {
+                                                            cartList !== null ?
+                                                            fullCost.toFixed(2)
+                                                            :''
+                                                        }
+                                                    </b>
+                                                </i> 
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <TextField
+                                                fullWidth   
+                                                label="First Name"
+                                                variant='outlined'
+                                                sx={{
+                                                    marginRight:'10px'
+                                                }}
+                                                size={'small'}
+                                                // rows={}
+                                            />
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <TextField
+                                                fullWidth   
+                                                label="Last Name"
+                                                variant='outlined'
+                                                sx={{
+                                                    marginLeft:'10px'
+                                                }}
+                                                size={'small'}
+                                                />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <TextField
+                                                fullWidth
+                                                label="Email Address"
+                                                variant='outlined'
+                                                size={'small'}
+                                                />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <TextField
+                                                fullWidth
+                                                label="Card Number"
+                                                variant='outlined'
+                                                size={'small'}
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                        <Button 
+                                            sx={{
+                                                display:'block',
+                                                width:'100%'
+                                            }}
+                                            variant="contained"
+                                        >
+                                            <b>Order</b>
+                                        </Button>
+                                        </Grid>
+                                    </Grid>
+                                    
+                                </Box>
+                            </Box>
                         </Grid>
-                        
-                    </Box>
-                </Box>
-                
-            </form>
+                    </Grid>
+                </form>
 
-        </section>
+            </section>
+        </ThemeProvider>
     );
 }
 
