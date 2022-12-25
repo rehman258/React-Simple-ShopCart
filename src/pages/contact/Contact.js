@@ -4,7 +4,8 @@ import {
     Typography,
     TextField,
     TextareaAutosize,
-    Button
+    Button,
+    Grid,
 }from '@mui/material';
 
 
@@ -21,11 +22,11 @@ const Contact = () => {
             MuiTextField:{
                 styleOverrides:{
                     root:{
-                        margin:'0px 15px',
+                        // margin:'0px 15px',
                         marginBottom:'25px',
                         minWidth:'300px',
-                        maxWidth:'630px',
-                        width:'300px',
+                        // maxWidth:'630px',
+                        // width:'300px',
                         '& input':{
                             color:'white',
                         },
@@ -94,57 +95,79 @@ const Contact = () => {
                             flexDirection:'column',
                             alignItems:'center',
                             // backgroundColor:'red',
-                            // width:'580px',
+                            width:'600px',
                             boxSizing:'border-box'
                         }}
                     >
-                        <Box>
-                            <Box
-                                sx={{
-                                    width:'100%'
-                                }}
+                        <Grid
+                            container
+                            
+                        >
+                            <Grid
+                                item
+                                md={6}
+                                sm={12}
                             >
                                 <TextField
                                     variant='outlined'
                                     label="Name"
                                     type="text"
+                                    fullWidth
                                     sx={{
+                                        margin:'12.5px 10px',
+                                        
                                     }}
                                 />
-                                <TextField
-                                    variant='outlined'
-                                    label="E-mail"
-                                    type="email"
-                                    sx={{
-                                    }}
-                                />
-                            </Box>
-                            <Box
-                                sx={{
-                                    width:'100%'
-                                }}
+                                
+                            </Grid>
+                            <Grid
+                                item
+                                md={6}
+                                sm={12}
                             >
                                 <TextField
                                     variant='outlined'
                                     type="number"
                                     label="Number"
+                                    fullWidth
+                                    sx={{
+                                        margin:'12.5px 10px',
+                                        
+                                    }}
                                 />
-                            </Box>
-                            <Box
-                                sx={{
-                                    width:'100%'
-                                }}
+                                
+                            </Grid>
+                            <Grid
+                                item
+                                md={12}
+                                sm={12}
+                            >
+                                <TextField
+                                    variant='outlined'
+                                    label="E-mail"
+                                    type="email"
+                                    fullWidth
+                                    sx={{
+                                        margin:'12.5px 10px'
+                                    }}
+                                />
+                            </Grid>
+                            <Grid
+                                item
+                                md={12}
+                                sm={12}
                             >
                                 <TextField
                                     variant='outlined'
                                     label="Description"
                                     sx={{
-                                        width:'100%'
+                                        margin:'12.5px 10px'
                                     }}
                                     fullWidth
                                 />
-                            </Box>
-                            <Box
+                            </Grid>
+                            <Grid
+                                item
                                 sx={{
                                     textAlign:'end'
                                 }}
@@ -160,9 +183,9 @@ const Contact = () => {
                                 >
                                     Send
                                 </Button>
-                            </Box>
+                            </Grid>
                             
-                        </Box>
+                        </Grid>
                     </Box>
                 </form>
             </section>

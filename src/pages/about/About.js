@@ -86,7 +86,13 @@ const About = () => {
                     }}
                 >
                     <Grid container>
-                        <Grid item xs={6}>
+                        <Grid 
+                            item 
+                            // xs={6}
+                            md={6}
+                            xl={6}
+                            sm={12}
+                        >
                             <Typography className='aboutContent'> 
                                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae non alias temporibus in deserunt laudantium maiores ex voluptatum vel? Facere rerum, nisi doloremque repudiandae odit culpa totam sit! Aspernatur, consequuntur?
                                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae non alias temporibus in deserunt laudantium maiores ex voluptatum vel? Facere rerum, nisi doloremque repudiandae odit culpa totam sit! Aspernatur, consequuntur?
@@ -94,7 +100,10 @@ const About = () => {
                         </Grid>
                         <Grid 
                             item
-                            xs={6}
+                            // xs={6}
+                            md={6}
+                            xl={6}
+                            sm={12}
                             sx={{
                                 display:'flex',
                                 justifyContent:'center',

@@ -122,7 +122,7 @@ const CartList = ({cartReducer,removeFromCartAction,updateCartItem}) => {
             <section className='cartList'>
                 <form action="" style={{display:'flex'}}>
                     <Grid container>
-                        <Grid item xs={8}>
+                        <Grid item xl={8} md={8} sm={12}>
                             <List 
                                 sx={{ 
                                     width: '100%', 
@@ -150,7 +150,7 @@ const CartList = ({cartReducer,removeFromCartAction,updateCartItem}) => {
                             
                             </List>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xl={4} md={4} sm={12}>
 
                             <Box 
                                 sx={{
