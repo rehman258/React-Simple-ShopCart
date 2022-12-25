@@ -13,13 +13,17 @@ class Storage{
             // console.log([...tempStorage,product])
         }else{
             localStorage.setItem('products',JSON.stringify([product]))
-        }
+        } 
         
     }
     _checkStorage(id){
-        const isInCart = this._getStorage().find(item=>item.id===Number(id))
-        if(isInCart) return isInCart
-        return null 
+        // if()
+        // console.log()
+        if(this._getStorage()){
+            const isInCart = this._getStorage().find(item=>item.id===Number(id))
+            if(isInCart) return isInCart
+            return null 
+        }
     }
 
     _removeFromStore(id){
