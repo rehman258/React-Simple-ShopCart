@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react';
 
 import defaultTheme from '../../Theme/Theme';
-import {createTheme,ThemeProvider} from '@mui/material/styles';
+import {styled,createTheme,ThemeProvider} from '@mui/material/styles';
 import {
     Box,
     Grid,
@@ -11,10 +11,31 @@ import {
 import {connect} from 'react-redux';
 
 
+import ThemeRoot from  '../../Theme/ResponsiveTheme';
+
+
 // import '../../assets/style/about.css';
 import Logo from '../../assets/img/shop-logo.png'
 
-
+const Root = styled('div')(({theme})=>({
+    '& .aboutContent':{
+        [theme.breakpoints.down('md')]:{
+            // fontSize:'18'
+            padding:'50px 75px',
+        },
+        [theme.breakpoints.down('sm')]:{
+            // fontSize:'18'
+            padding:'50px 35px',
+        }
+    },
+    '& .aboutWrapper':{
+        [theme.breakpoints.down('md')]:{
+            // fontSize:'18'
+            // padding:'50px 75px',
+            justifyContent:'center'
+        }
+    }
+}))
 
 const About = () => {
     const aboutTheme = createTheme({
@@ -74,6 +95,8 @@ const About = () => {
     })
     return (
         <ThemeProvider theme={aboutTheme}>
+            <ThemeRoot>
+            <Root>
             <section>
                 <Typography className="section-header">
                     <span>
@@ -85,10 +108,13 @@ const About = () => {
                         padding:'50px 0px'
                     }}
                 >
-                    <Grid container>
+                    <Grid
+                        container
+                        className='aboutWrapper'
+                    >
                         <Grid 
                             item 
-                            // xs={6}
+                            xs={12}
                             md={6}
                             xl={6}
                             sm={12}
@@ -104,11 +130,13 @@ const About = () => {
                             md={6}
                             xl={6}
                             sm={12}
+                            xs={12}
                             sx={{
                                 display:'flex',
                                 justifyContent:'center',
                                 alignItems:'center'
                             }} 
+                            
                         >
                             <img className='home-about--section-logo' style={{
                                 height: '121px',
@@ -121,6 +149,9 @@ const About = () => {
                     </Grid>
                 </Box>
             </section>
+        </Root>
+        </ThemeRoot>
+
         </ThemeProvider>
 
     );

@@ -8,11 +8,40 @@ import {
     Grid,
 }from '@mui/material';
 
+import {createTheme,ThemeProvider,styled} from '@mui/material/styles';
+import ThemeRoot from '../../Theme/ResponsiveTheme';
+
+
+const Root = styled('div')(({ theme }) => ({
+
+    
+
+    
+    // '& .contact-name':{
+    //     [theme.breakpoints.down('md')]: {
+    //         marginRight:'0px',
+    //     },
+    // },
+    // '& .contact-number':{
+    //     [theme.breakpoints.down('md')]: {
+    //         marginLeft:'0px',
+    //     },
+    // },    
+      
+
+    [theme.breakpoints.up('md')]: {
+        // backgroundColor: 'blue',
+    },
+    [theme.breakpoints.up('lg')]: {
+        // backgroundColor: 'green',
+    },  
+    
+
+
+}));
 
 
 
-import {createTheme,ThemeProvider} from '@mui/material/styles';
-import { maxWidth } from '@mui/system';
 
 
 const Contact = () => {
@@ -22,9 +51,11 @@ const Contact = () => {
             MuiTextField:{
                 styleOverrides:{
                     root:{
-                        // margin:'0px 15px',
+                        // margin:'0px 10px ',
+                        // marginLeft:'15px',
+                        // marginRight:'15px',
                         marginBottom:'25px',
-                        minWidth:'300px',
+                        minWidth:'auto',
                         // maxWidth:'630px',
                         // width:'300px',
                         '& input':{
@@ -56,9 +87,6 @@ const Contact = () => {
                                 borderColor:'#30abb0',
                             },
                         },
-                        
-                        
-                        
                     }
                 }
             },
@@ -66,7 +94,7 @@ const Contact = () => {
                 styleOverrides:{
                     root:{
                         padding:'5px 40px',
-                        margin:'0px 15px',
+                        // margin:'0px 15px',
                         borderRadius:'8px',
                     }
                 }
@@ -79,6 +107,8 @@ const Contact = () => {
 
     return (
         <ThemeProvider theme={contactTheme}>
+            <ThemeRoot>
+            <Root>
             <section>
                 <Typography className="section-header">
                     <span>
@@ -91,11 +121,13 @@ const Contact = () => {
                             display:'flex',
                             justifyContent:'center',
                             margin:'0px auto',
+                            padding:'0px 25px',
                             marginTop:'95px',
                             flexDirection:'column',
                             alignItems:'center',
                             // backgroundColor:'red',
-                            width:'600px',
+                            maxWidth:'600px',
+                            width:'100%',
                             boxSizing:'border-box'
                         }}
                     >
@@ -107,15 +139,21 @@ const Contact = () => {
                                 item
                                 md={6}
                                 sm={12}
+                                xs={12}
+                                sx={{
+                                    // marginRight:'10px',
+                                    paddingRight:'10px',
+                                }}
+                                className='px-0-md'
                             >
                                 <TextField
                                     variant='outlined'
+                                    className='contact-name'
                                     label="Name"
                                     type="text"
                                     fullWidth
                                     sx={{
-                                        margin:'12.5px 10px',
-                                        
+                                        // marginLeft:'0px',
                                     }}
                                 />
                                 
@@ -124,15 +162,20 @@ const Contact = () => {
                                 item
                                 md={6}
                                 sm={12}
+                                xs={12}
+                                sx={{
+                                    paddingLeft:'10px',
+                                }}
+                                className='px-0-md'
                             >
                                 <TextField
+                                    className='contact-number'
                                     variant='outlined'
                                     type="number"
                                     label="Number"
                                     fullWidth
                                     sx={{
-                                        margin:'12.5px 10px',
-                                        
+                                        // marginRight:'0px',
                                     }}
                                 />
                                 
@@ -141,6 +184,7 @@ const Contact = () => {
                                 item
                                 md={12}
                                 sm={12}
+                                xs={12}
                             >
                                 <TextField
                                     variant='outlined'
@@ -148,7 +192,7 @@ const Contact = () => {
                                     type="email"
                                     fullWidth
                                     sx={{
-                                        margin:'12.5px 10px'
+                                        // marginLeft:'10px',
                                     }}
                                 />
                             </Grid>
@@ -156,18 +200,25 @@ const Contact = () => {
                                 item
                                 md={12}
                                 sm={12}
+                                xs={12}
                             >
                                 <TextField
                                     variant='outlined'
                                     label="Description"
-                                    sx={{
-                                        margin:'12.5px 10px'
-                                    }}
+                                    type="text"
                                     fullWidth
+                                    sx={{
+                                        // marginLeft:'10px',
+                                        // marginLeft:'10px',
+                                    }}
                                 />
                             </Grid>
                             <Grid
                                 item
+                                xs={12}
+                                sm={12}
+                                md={12}
+                                xl={12}
                                 sx={{
                                     textAlign:'end'
                                 }}
@@ -189,6 +240,8 @@ const Contact = () => {
                     </Box>
                 </form>
             </section>
+             </Root>
+             </ThemeRoot>
         </ThemeProvider>
     );
 }

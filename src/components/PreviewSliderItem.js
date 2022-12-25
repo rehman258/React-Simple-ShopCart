@@ -39,7 +39,7 @@ const PreviewSliderItem = ({sliderItem,addCartHandler}) =>{
 
       <Paper
         sx={{
-          padding:'5px 10px',
+          // padding:'5px 10px',
           backgroundColor:'transparent',
           boxShadow:'none'
         }}

@@ -85,7 +85,10 @@ const CategoryFilter = ({gallery,addCartHandler,productReducer}) => {
                         productReducer.products.map((prod,i)=>(
                             <Grid 
                                 key={i}
-                                xs={3}
+                                xl={2}
+                                md={3}
+                                sm={4}
+                                xs={12}
                                 item
                                 hidden={ 
 

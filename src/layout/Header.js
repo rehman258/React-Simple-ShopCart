@@ -5,17 +5,27 @@ import '../assets/style/header.css';
 import {Link} from 'react-router-dom';
 
 import defaultTheme from '../Theme/Theme';
-import {createTheme,ThemeProvider} from '@mui/material/styles';
+import {styled,createTheme,ThemeProvider} from '@mui/material/styles';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LanguageIcon from '@mui/icons-material/Language';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+
 
 import {
     Box,
     Grid,
 } from '@mui/material';
 
+const Root=styled('div')(({theme})=>({
+    '& .header-grid-item':{
+        [theme.breakpoints.down('md')]:{
+            display:'flex',
+            justifyContent:'center'
+        }
+    }
+}))
 
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LanguageIcon from '@mui/icons-material/Language';
-import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+
 const Header = () => {
     const headerTheme= createTheme({
         components:{
@@ -97,90 +107,109 @@ const Header = () => {
             ...defaultTheme.palette.defaultColors
         }
     })    
-    // console.log()
     return (
         <ThemeProvider theme={headerTheme}>
+            <Root>
+                <Box 
+                    className='header'
+                    sx={{
+                        backgroundColor:'#ffffff1f',
+                        boxShadow:`0px 4px 42px 9px ${headerTheme.palette.logoColor}`,
+                        position:'relative',
+                        zIndex:'9999',
+                    }}
+                    >
+                    <Grid container 
+                        sx={{
+                            alignItems:'center',
+                            // padding:'15px'
+                        }}
+                    >
+                        <Grid 
+                            item 
+                            xl={3} 
+                            lg={3} 
+                            md={3} 
+                            sm={12} 
+                            xs={12} 
+                            className='header-grid-item'
+                        >
+                            <Link exact='true' to="/">
+                                <div className="header-logo">
+                                    <img src={Logo} alt="" />
+                                </div>
+                            </Link>
+                        </Grid>
+                        <Grid 
+                            item 
+                            xl={6} 
+                            lg={6} 
+                            md={6} 
+                            sm={12} 
+                            xs={12} 
+                            className='header-grid-item'
+                        >
+                            <ul className='header-menu-list'>
+                                <li>
+                                    <Link to="/">
+                                        Home
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/about">
+                                        About
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/products">
+                                        Products
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/contact">
+                                        Contact
+                                    </Link>
+                                </li>
+                            </ul>
+                        </Grid>
+                        <Grid 
+                            item 
+                            xl={2} 
+                            lg={2} 
+                            md={2} 
+                            sm={12} 
+                            xs={12} 
+                            className='header-grid-item'
+                        >
+                            <ul className='header-socials'>
+                                <li>
+                                    <a href='https://github.com/rehman258' target="_blank">
+                                        <GitHubIcon/>
+                                    </a>
 
-        <Box 
-            className='header'
-            sx={{
-                backgroundColor:'#ffffff1f',
-                boxShadow:`0px 4px 42px 9px ${headerTheme.palette.logoColor}`,
-                position:'relative',
-                zIndex:'9999',
-            }}
-            >
-            <Grid container 
-                sx={{
-                    alignItems:'center',
-                    // padding:'15px'
-                }}
-            >
-                <Grid item xs={3}>
-                    <Link exact='true' to="/">
-                        <div className="header-logo">
-                            <img src={Logo} alt="" />
-                        </div>
-                    </Link>
-                </Grid>
-                <Grid item xs={6}>
-                    <ul className='header-menu-list'>
-                        <li>
-                            <Link to="/">
-                                Home
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/about">
-                                About
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/products">
-                                Products
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/contact">
-                                Contact
-                            </Link>
-                        </li>
-                    </ul>
-                </Grid>
-                <Grid item xs={2}>
-                    <ul className='header-socials'>
-                        <li>
-                            <a href='https://github.com/rehman258' target="_blank">
-                                <GitHubIcon/>
-                            </a>
+                                </li>
+                                <li>
+                                <a href="https://rehman258.vercel.app/" target="_blank">
+                                        <LanguageIcon/>
+                                    </a>
+                                </li>
+                                <li>
+                                    <Link to='/cartlist'>
+                                        <ShoppingBasketIcon/>
+                                    </Link>
 
-                        </li>
-                        <li>
-                        <a href="https://rehman258.vercel.app/" target="_blank">
-                                <LanguageIcon/>
-                            </a>
-                        </li>
-                        {/* <li>
-                            
-                            <a href="https://rehman258.vercel.app/" target="_blank">
-                                <LanguageIcon/>
-                            </a>
-                        </li> */}
-                    </ul>
-                </Grid>
-                <Grid item xs={1}>
-                    <ul className='header-socials'>
-                        <li>
-                            <Link to='/cartlist'>
-                                <ShoppingBasketIcon/>
-                            </Link>
-
-                        </li>
-                        
-                    </ul>
-                </Grid>
-            </Grid>
-        </Box>
+                                </li>
+                                {/* <li>
+                                    
+                                    <a href="https://rehman258.vercel.app/" target="_blank">
+                                        <LanguageIcon/>
+                                    </a>
+                                </li> */}
+                            </ul>
+                        </Grid>
+                    </Grid>
+                </Box>
+            </Root>
         </ThemeProvider>
     );
 }

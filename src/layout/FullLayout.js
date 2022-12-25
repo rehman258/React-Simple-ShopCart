@@ -1,15 +1,14 @@
 import React from 'react';
+import Header from './Header';
+import Footer from './Footer';
 import {
-  
   Box, 
   Typography,
-
 } from '@mui/material';
 import defaultTheme from '../Theme/Theme';
 import {createTheme,ThemeProvider} from '@mui/material/styles';
 
-import Header from './Header';
-import Footer from './Footer';
+
 
 import {BrowserRouter} from 'react-router-dom';
 
