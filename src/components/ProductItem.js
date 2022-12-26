@@ -48,7 +48,9 @@ export default function RecipeReviewCard({productItem,addCartHandler}) {
           sx={{
               padding:'5px 10px',
               backgroundColor:'transparent',
-              boxShadow:'none'
+              boxShadow:'none',
+              display:'flex',
+              justifyContent:'center',
           }}
         >
           <Card sx={{ maxWidth: 345,backgroundColor:'#1f2122',border:'10px solid #292f33d9',}}>

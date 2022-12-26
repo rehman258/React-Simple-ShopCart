@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Logo from '../assets/img/shop-logo.png';
 import '../assets/style/header.css';
 
@@ -10,10 +10,11 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LanguageIcon from '@mui/icons-material/Language';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 
-
+import MenuIcon from '@mui/icons-material/Menu';
 import {
     Box,
     Grid,
+    IconButton,
 } from '@mui/material';
 
 const Root=styled('div')(({theme})=>({
@@ -22,11 +23,47 @@ const Root=styled('div')(({theme})=>({
             display:'flex',
             justifyContent:'center'
         }
-    }
+    },
+    '& .header-menu-list':{
+        [theme.breakpoints.down('md')]:{
+            display:'block !important',
+            width:'100%',
+            overflow:'hidden',
+            height:'0px'
+            // justifyContent:'center'
+        }
+    },
+    '& .menuControlBtn':{
+        [theme.breakpoints.down('md')]:{
+            // justifyContent:'center'
+            display:'inherit'
+        }
+    },
+    '& .header-menu-list.menuOpen':{
+        [theme.breakpoints.down('md')]:{
+            display:'block !important',
+            width:'100%',
+            height:'200px'
+            // justifyContent:'center'
+        }
+    },
+    '& .header-menu-list li':{
+        [theme.breakpoints.down('md')]:{
+            marginBottom:'10px !important',
+            marginRight:'0px',
+            // justifyContent:'center'
+        }
+    },
 }))
 
 
+
 const Header = () => {
+    const [menuIsOpen,setMenuIsOpen] = useState(false)
+
+    const menuOpenHandler=()=>{
+        setMenuIsOpen(!menuIsOpen)
+    }
     const headerTheme= createTheme({
         components:{
             MuiBox:{
@@ -39,8 +76,12 @@ const Header = () => {
             MuiGrid:{
                 styleOverrides:{
                     root:{
+                        '&.menuControlBtn':{
+                            display:'none',
+                        },
                         padding:'10px 15px',
                         '& ul.header-menu-list':{
+                            transition:'all .5s ease',
                             display:'flex',
                             '& li':{
                                 margin:'0px 5px',
@@ -140,6 +181,35 @@ const Header = () => {
                                 </div>
                             </Link>
                         </Grid>
+                        <Grid
+                            item
+                            xl={6} 
+                            lg={6} 
+                            md={6} 
+                            sm={12} 
+                            xs={12} 
+                            className='menuControlBtn'
+                        >
+                            <Box
+                                sx={{
+                                    width:'100%',
+                                    display:'flex',
+                                    justifyContent:'end'
+                                }}
+                            >
+                                <IconButton
+                                    onClick={menuOpenHandler}
+                                >
+                                    <MenuIcon
+                                        color={'red'}
+                                        fontSize='large'
+                                        sx={{
+                                            color:'#30abb0'
+                                        }}
+                                    />
+                                </IconButton>
+                            </Box>
+                        </Grid>
                         <Grid 
                             item 
                             xl={6} 
@@ -149,7 +219,9 @@ const Header = () => {
                             xs={12} 
                             className='header-grid-item'
                         >
-                            <ul className='header-menu-list'>
+                            
+
+                            <ul className={menuIsOpen?'header-menu-list menuOpen':'header-menu-list'}>
                                 <li>
                                     <Link to="/">
                                         Home
