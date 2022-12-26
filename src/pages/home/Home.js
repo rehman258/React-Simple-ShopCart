@@ -27,7 +27,7 @@ import CategoryFilter from '../../components/CategoryFilter';
 import {loadProducts} from '../../services/services';
 import {loadProductsAction,updateProducInCarttAction} from '../../redux/actions/ProductAction';
 
-import {addToCartAction,loadCartItems} from '../../redux/actions/CartActions';
+import {addToCartAction} from '../../redux/actions/CartActions';
 import Storage from '../../Storage/Storage';
 
 const Root = styled('div')(({theme})=>({
@@ -48,7 +48,7 @@ const Root = styled('div')(({theme})=>({
 
 
 
-const Home = ({homeReducer,productReducer,cartReducer,loadProductsAction,addToCartAction,updateProducInCarttAction,loadCartItems}) => {
+const Home = ({homeReducer,productReducer,cartReducer,loadProductsAction,addToCartAction,updateProducInCarttAction}) => {
     
 
     const homeTheme = createTheme({
@@ -221,7 +221,7 @@ const Home = ({homeReducer,productReducer,cartReducer,loadProductsAction,addToCa
 
                             <CategoryFilter
                                 addCartHandler={addCartHandler}
-                                gallery={homeReducer.products}
+                                productPack={productReducer}
                             />:''
                         }
                         <div className="line-effect"></div>
@@ -233,7 +233,7 @@ const Home = ({homeReducer,productReducer,cartReducer,loadProductsAction,addToCa
                         <Box
                             className="preview-slider"
                         >
-                            <PreviewSlider addCartHandler={addCartHandler} sliderList={productReducer.products}/>
+                            <PreviewSlider addCartHandler={addCartHandler} sliderList={productReducer.products.list}/>
                         </Box>
                     </Root>
                 </ThemeRoot>
@@ -249,7 +249,6 @@ const mapDispatchToProps={
     loadProductsAction,
     addToCartAction,
     updateProducInCarttAction,
-    loadCartItems
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Home);

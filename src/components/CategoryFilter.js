@@ -10,7 +10,8 @@ import {createTheme,ThemeProvider} from '@mui/material/styles';
 
 import {connect} from 'react-redux'
 
-const CategoryFilter = ({gallery,addCartHandler,productReducer}) => {
+const CategoryFilter = ({addCartHandler,productPack,productReducer}) => {
+    // console.log()
     const [galleryItems,setGalleryItem]= useState(null);
     const [categoryType,setCategoryType]=useState('all')
     
@@ -29,7 +30,7 @@ const CategoryFilter = ({gallery,addCartHandler,productReducer}) => {
 
     // console.log(productReducer)
     useEffect(()=>{
-        setGalleryItem(gallery)
+        // console.log(productReducer)
     },[])
 
     const CategoryTabItem =({tabText,tabIndex,...otherProps})=>{
@@ -66,8 +67,8 @@ const CategoryFilter = ({gallery,addCartHandler,productReducer}) => {
                         All
                     </li>
                     {
-                        productReducer.categories !== null ?
-                            productReducer.categories.map((tabItem,i)=>(
+                        productReducer.products.categories !== null ?
+                        productReducer.products.categories.map((tabItem,i)=>(
                                 <CategoryTabItem 
                                     key={i} 
                                     tabIndex={i}
@@ -81,8 +82,8 @@ const CategoryFilter = ({gallery,addCartHandler,productReducer}) => {
                 <Grid container
                 >
                     {
-                        productReducer.products !== null ?
-                        productReducer.products.map((prod,i)=>(
+                        productReducer.products.list !== null ?
+                        productReducer.products.list.map((prod,i)=>(
                             <Grid 
                                 key={i}
                                 xl={2}

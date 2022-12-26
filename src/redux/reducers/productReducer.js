@@ -3,8 +3,10 @@ import Types from '../types/types';
 
 
 const productState = {
-    products:null,
-    categories:null,
+    products:{
+        list:null,
+        categories:null
+    },
     isReload:false,
 }
 
@@ -13,14 +15,17 @@ const productReducer = (state=productState,{type,payload})=>{
         case Types.LOAD_PRODUCTS:
             return{
                 ...state,
-                products:payload.list,
-                categories:payload.categories,
+                products:payload
+                
             }
         case Types.UPDATE_ITEM_IN_CART:
-            const updatedList = state.products.map(item=>item.id!==payload.id?item:{...item,isInCart:true})
+            const updatedList = state.products.list.map(item=>item.id!==payload.id?item:{...item,isInCart:true})
             return{
                 ...state,
-                products:updatedList,
+                products:{
+                    ...state.products,
+                    list:updatedList
+                },
             }
             
         default:return state

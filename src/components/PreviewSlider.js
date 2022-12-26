@@ -38,7 +38,7 @@ const BannerPrevArrow = (props)=>{
 
 
 
-const PreviewSlider = ({addCartHandler,productReducer}) => {
+const PreviewSlider = ({addCartHandler,sliderList,productReducer}) => {
     const settings = {
         dots: false,
         infinite: true,
@@ -84,8 +84,8 @@ const PreviewSlider = ({addCartHandler,productReducer}) => {
     return (
             <Slider {...settings} style={{backgroundColor:'#fff'}}>
                 {   
-                    productReducer.products !== null ?
-                        productReducer.products.map((sliderItem,i)=>(
+                    productReducer.products.list !== null ?
+                    productReducer.products.list.map((sliderItem,i)=>(
                             <div key={i} className="preview-sliderItem">
                                 <PreviewSliderItem addCartHandler={addCartHandler} sliderItem={sliderItem}/>
                             </div>

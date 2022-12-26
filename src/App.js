@@ -23,6 +23,7 @@ import { loadProducts } from './services/services';
 import { loadProductsAction } from './redux/actions/ProductAction';
 
 function App({loadCartItems,productReducer}) {
+
   useEffect(()=>{
     (async()=>{
       // console.log(await loadProducts())
@@ -32,6 +33,7 @@ function App({loadCartItems,productReducer}) {
       }
     })()
   },[])
+  
   return (
     <FullLayout>
         <Routes>
